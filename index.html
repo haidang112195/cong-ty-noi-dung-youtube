@@ -199,11 +199,77 @@ html[data-theme="light"] .pin{background:#fdf0c2;color:#7a5b00}
 html[data-theme="light"] .msg.assign .bubble{background:#fdf0c2;color:#5c4300}
 html[data-theme="light"] .tagjob{background:#eef2fa;color:var(--txt)}
 /* ===== Cỡ chữ (bản tĩnh: Nhỏ / Vừa / Lớn) ===== */
-html[data-font="s"] body{font-size:14px}
+/* Áp lên MỌI cỡ chữ thành phần (trước đây chỉ đổi body 15→14px nên Nhỏ nhìn như không đổi) */
+html[data-font="s"] body{font-size:13px}
+html[data-font="s"] header.roomhead .rtitle b{font-size:14.5px}
+html[data-font="s"] header.roomhead .rtitle .sub{font-size:11px}
+html[data-font="s"] .sub{font-size:12px}
+html[data-font="s"] h3{font-size:14px}
+html[data-font="s"] .pin{font-size:12px}
+html[data-font="s"] .sender{font-size:11px}
+html[data-font="s"] .meta{font-size:10.5px}
+html[data-font="s"] .tagjob{font-size:11px}
+html[data-font="s"] .replabel{font-size:10px}
+html[data-font="s"] .msgs{gap:6px;padding:8px 10px}
+html[data-font="s"] .bubble{padding:5px 9px;border-radius:12px}
+html[data-font="s"] #chatInput{font-size:14px;min-height:38px;padding:8px 11px}
+html[data-font="s"] .composer .sendrow button.primary{min-height:38px}
+html[data-font="s"] .ptab{font-size:11.5px}
+html[data-font="s"] .ptab .cnt{font-size:10px}
+html[data-font="s"] .roommini b{font-size:13.5px}
+html[data-font="s"] .statbox b{font-size:16px}
+html[data-font="s"] .statbox span{font-size:11.5px}
+html[data-font="s"] .memberrow .minfo b{font-size:12.5px}
+html[data-font="s"] .memberrow .minfo .sub{font-size:11px}
+html[data-font="s"] .boardline{font-size:12.5px}
+html[data-font="s"] .filelink b{font-size:12px}
+html[data-font="s"] .filelink small{font-size:10.5px}
+html[data-font="s"] .jobfile b{font-size:12px}
+html[data-font="s"] .jobfile .sub{font-size:11px}
+html[data-font="s"] .sttag{font-size:10.5px}
+html[data-font="s"] .kv{font-size:12.5px}
+html[data-font="s"] .spanel h3{font-size:12.5px}
+html[data-font="s"] .spanel .hint{font-size:11px}
+html[data-font="s"] .kname b{font-size:12px}
+html[data-font="s"] .kname span{font-size:11px}
+html[data-font="s"] .keymask{font-size:12px}
+html[data-font="s"] .kacts button{font-size:11.5px}
+html[data-font="s"] .sttag2{font-size:10.5px}
+html[data-font="s"] .lawrow{font-size:12px}
+html[data-font="s"] .chip{font-size:12px}
+html[data-font="s"] .arow{font-size:12px}
+html[data-font="s"] .arow .ainfo b{font-size:12px}
+html[data-font="s"] .arow .ainfo span{font-size:11px}
+html[data-font="s"] .checkres{font-size:12px}
 html[data-font="l"] body{font-size:17px}
+html[data-font="l"] header.roomhead .rtitle b{font-size:18.5px}
+html[data-font="l"] header.roomhead .rtitle .sub{font-size:14px}
 html[data-font="l"] .sub{font-size:15px}
+html[data-font="l"] h3{font-size:18px}
+html[data-font="l"] .pin{font-size:15px}
 html[data-font="l"] .sender{font-size:13.5px}
+html[data-font="l"] .meta{font-size:13px}
+html[data-font="l"] .tagjob{font-size:13px}
+html[data-font="l"] #chatInput{font-size:17px}
+html[data-font="l"] .ptab{font-size:13.5px}
+html[data-font="l"] .roommini b{font-size:17px}
+html[data-font="l"] .statbox b{font-size:22px}
+html[data-font="l"] .statbox span{font-size:13.5px}
+html[data-font="l"] .memberrow .minfo b{font-size:15.5px}
+html[data-font="l"] .memberrow .minfo .sub{font-size:13.5px}
+html[data-font="l"] .boardline{font-size:15.5px}
+html[data-font="l"] .filelink b{font-size:15px}
+html[data-font="l"] .jobfile b{font-size:14.5px}
+html[data-font="l"] .jobfile .sub{font-size:13.5px}
+html[data-font="l"] .kv{font-size:15.5px}
+html[data-font="l"] .spanel h3{font-size:14.5px}
 html[data-font="l"] .kname b{font-size:14.5px}
+html[data-font="l"] .kname span{font-size:13px}
+html[data-font="l"] .keymask{font-size:14px}
+html[data-font="l"] .lawrow{font-size:14.5px}
+html[data-font="l"] .chip{font-size:14px}
+html[data-font="l"] .arow{font-size:14.5px}
+html[data-font="l"] .arow .ainfo b{font-size:14.5px}
 </style>
 </head>
 <body>
@@ -612,6 +678,40 @@ var LAWS=[
  {t:"Báo cáo phải gắn mã việc",ban:true}
 ];
 var editingLaw=-1;
+/* ===== NHỚ CÀI ĐẶT QUA F5 (bản tĩnh: localStorage của chính trình duyệt) ===== */
+var LSKEY="ctyt-settings-v1";
+var savedQcVer=null;
+function saveSettings(){
+ try{
+  var de=document.documentElement;
+  localStorage.setItem(LSKEY,JSON.stringify({
+   people:PEOPLE,dead:DEADKEYS,shortcuts:SHORTCUTS,laws:LAWS,members:state.members,
+   theme:de.getAttribute("data-theme")||"dark",
+   font:de.getAttribute("data-font")||"m",
+   qcVer:(typeof qcVer==="number")?qcVer:1.0
+  }));
+ }catch(e){}
+}
+(function loadSettings(){
+ try{
+  var raw=localStorage.getItem(LSKEY);if(!raw)return;
+  var s=JSON.parse(raw);if(!s)return;
+  if(Array.isArray(s.people)&&s.people.length)PEOPLE=s.people;
+  if(Array.isArray(s.dead))DEADKEYS=s.dead;
+  if(Array.isArray(s.shortcuts))SHORTCUTS=s.shortcuts;
+  if(Array.isArray(s.laws)&&s.laws.length)LAWS=s.laws;
+  if(Array.isArray(s.members))state.members=s.members;
+  if(typeof s.qcVer==="number")savedQcVer=s.qcVer;
+  if(s.theme==="light"){
+   document.documentElement.setAttribute("data-theme","light");
+   document.querySelectorAll("[data-theme-set]").forEach(function(x){x.classList.toggle("active",x.dataset.themeSet==="light")});
+  }
+  if(s.font==="s"||s.font==="l"){
+   document.documentElement.setAttribute("data-font",s.font);
+   document.querySelectorAll("[data-font-set]").forEach(function(x){x.classList.toggle("active",x.dataset.fontSet===s.font)});
+  }
+ }catch(e){}
+})();
 function pStatus(p){return p.conn?["Đã kết nối","on"]:p.key?["Đã cấp","mid"]:["Chưa cấp khóa","off"]}
 function copyText(txt,msg){
  function done(){toast(msg,true)}
@@ -650,6 +750,7 @@ function renderAdded(){
 }
 function renderShortcuts(){
  $("chipRow").innerHTML=SHORTCUTS.map(function(s,i){return '<a class="chip" href="'+s.url+'" target="_blank" rel="noopener">'+s.icon+' '+esc(s.name)+'<button type="button" class="cx" data-scdel="'+i+'" title="Gỡ lối tắt" aria-label="Gỡ lối tắt '+esc(s.name)+'">✕</button></a>'}).join("");
+ saveSettings();
 }
 function renderLaws(){
  var nl=LAWS.filter(function(l){return !l.ban}).length,nb=LAWS.length-nl;
@@ -666,8 +767,9 @@ function renderLaws(){
   return '<div class="lawrow">'+body+'<button type="button" class="'+(dl?"confirming":"")+'" data-lawdel="'+i+'" title="Xóa luật này">'+(dl?"Xóa luật này?":"✕")+'</button></div>';
  }).join("");
  var le=$("lawEdit");if(le){le.focus();try{le.setSelectionRange(le.value.length,le.value.length)}catch(e){}}
+ saveSettings();
 }
-function renderSettings(){renderKeys();renderAdded();renderShortcuts();renderLaws()}
+function renderSettings(){renderKeys();renderAdded();renderShortcuts();renderLaws();saveSettings()}
 function deletePerson(i){
  var p=PEOPLE[i];if(!p||p.name==="Lead")return;
  if(p.key)DEADKEYS.push(p.key);
@@ -722,11 +824,13 @@ document.querySelectorAll("[data-theme-set]").forEach(function(b){b.addEventList
  if(b.dataset.themeSet==="light")document.documentElement.setAttribute("data-theme","light");
  else document.documentElement.removeAttribute("data-theme");
  document.querySelectorAll("[data-theme-set]").forEach(function(x){x.classList.toggle("active",x===b)});
+ saveSettings();
 })});
 document.querySelectorAll("[data-font-set]").forEach(function(b){b.addEventListener("click",function(){
  if(b.dataset.fontSet==="m")document.documentElement.removeAttribute("data-font");
  else document.documentElement.setAttribute("data-font",b.dataset.fontSet);
  document.querySelectorAll("[data-font-set]").forEach(function(x){x.classList.toggle("active",x===b)});
+ saveSettings();
 })});
 $("scToggle").addEventListener("click",function(){var f=$("shortcutForm");f.style.display="flex";this.style.display="none";$("scName").focus()});
 $("shortcutForm").addEventListener("submit",function(e){e.preventDefault();
@@ -748,12 +852,13 @@ $("lawForm").addEventListener("submit",function(e){e.preventDefault();
  $("lawInput").value="";$("lawForm").style.display="none";$("lawToggle").style.display="";
  renderLaws();toast("Đã thêm luật",true);
 });
-var qcVer=1.0;
+var qcVer=(savedQcVer&&savedQcVer>1)?savedQcVer:1.0;
+if(qcVer!==1.0)$("qcVer").textContent="v"+qcVer.toFixed(1);
 $("qcIssue").addEventListener("click",function(){
  qcVer=Math.round((qcVer+0.1)*10)/10;
  $("qcVer").textContent="v"+qcVer.toFixed(1)+" · "+new Date().toLocaleDateString("vi-VN");
  state.messages.push({from:"Lead",text:"📗 Ban hành Sổ tay QC v"+qcVer.toFixed(1)+" — chuẩn mới áp dụng cho tất cả các phòng, các phòng đọc và thực hiện theo.",job:"",kind:"chat",time:now()});
- renderAll();toast("Đã ban hành Sổ tay QC v"+qcVer.toFixed(1)+" cho các phòng",true);
+ renderAll();saveSettings();toast("Đã ban hành Sổ tay QC v"+qcVer.toFixed(1)+" cho các phòng",true);
 });
 renderAll();renderSettings();
 </script>
