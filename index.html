@@ -74,6 +74,14 @@ h3{margin:0 0 8px;font-size:16px}
 .psec:first-child{padding-top:0}
 .psec:last-child{border-bottom:none}
 .ptitle{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);margin:0 0 10px}
+.ptabs{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 2px}
+.ptab{flex:1 1 auto;min-height:32px;padding:4px 9px;font-size:12.5px;font-weight:700;border-radius:999px;background:var(--card2);color:var(--mut);border:1px solid var(--line);white-space:nowrap}
+.ptab:hover{color:var(--txt);background:#22315a}
+.ptab.active{background:var(--blue);border-color:var(--blue);color:#fff}
+.ptab .cnt{display:inline-block;min-width:17px;padding:0 4px;margin-left:4px;border-radius:999px;background:rgba(127,160,220,.22);color:var(--txt);font-size:11px;line-height:17px;text-align:center;vertical-align:1px}
+.ptab.active .cnt{background:rgba(255,255,255,.28);color:#fff}
+.ptabpane{display:none;padding-top:12px}
+.ptabpane.active{display:block}
 .roommini{display:flex;gap:10px;align-items:center}
 .roommini b{font-size:15.5px;display:block}
 .statgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -187,22 +195,27 @@ ol.steps{margin:8px 0;padding-left:22px}ol.steps li{margin:7px 0}
           <div><b>Phòng chat công ty</b><div class="sub" id="roomMiniSub" style="font-size:12.5px"></div></div>
         </div>
       </div>
-      <div class="psec">
-        <p class="ptitle">Thành viên nhóm</p>
+      <nav class="ptabs" aria-label="Các mục trong panel thông tin nhóm">
+        <button type="button" class="ptab active" data-ptab="members">Thành viên<span class="cnt" id="tabCntMembers"></span></button>
+        <button type="button" class="ptab" data-ptab="stats">Thống kê</button>
+        <button type="button" class="ptab" data-ptab="board">Bảng tin</button>
+        <button type="button" class="ptab" data-ptab="files">File &amp; Link<span class="cnt" id="tabCntFiles"></span></button>
+        <button type="button" class="ptab" data-ptab="jobs">Việc &amp; QC<span class="cnt" id="tabCntJobs"></span></button>
+      </nav>
+      <div class="ptabpane active" id="pane-members">
         <div id="panelMembers"></div>
       </div>
-      <div class="psec">
-        <p class="ptitle">Thống kê phòng</p>
+      <div class="ptabpane" id="pane-stats">
         <div class="statgrid" id="panelStats"></div>
       </div>
-      <div class="psec">
-        <p class="ptitle">Bảng tin nhóm</p>
+      <div class="ptabpane" id="pane-board">
         <div id="panelBoard"></div>
       </div>
-      <div class="psec">
-        <p class="ptitle">Kho file &amp; chi tiết</p>
+      <div class="ptabpane" id="pane-files">
         <div id="panelFiles"></div>
-        <p class="ptitle" style="margin-top:14px">Hồ sơ theo việc — chạm để xem chi tiết &amp; chấm QC</p>
+      </div>
+      <div class="ptabpane" id="pane-jobs">
+        <p class="sub" style="margin:0 0 8px;font-size:13px">Hồ sơ theo việc — chạm vào việc để xem chi tiết &amp; chấm QC.</p>
         <div id="panelJobs"></div>
       </div>
     </aside>
@@ -214,7 +227,7 @@ ol.steps{margin:8px 0;padding-left:22px}ol.steps li{margin:7px 0}
 <section id="v-settings">
   <button type="button" class="small" id="backToRoom" style="margin-bottom:12px">← Quay lại phòng chat</button>
   <div class="scard"><h3>Thêm Muse vào phòng chat</h3>
-    <p class="sub">Khai báo Muse sẽ tham gia phòng. Muse được thêm ở đây xuất hiện ngay trong mục Thành viên nhóm ở panel Thông tin nhóm, với trạng thái “Đã khai báo — chờ kết nối”.</p>
+    <p class="sub">Khai báo Muse sẽ tham gia phòng. Muse được thêm ở đây xuất hiện ngay trong tab Thành viên của panel Thông tin nhóm, với trạng thái “Đã khai báo — chờ kết nối”.</p>
     <form class="formrow" id="memberForm" style="margin-top:10px">
       <input required id="mName" placeholder="Tên hiển thị *"/>
       <select id="mRoom" title="Phòng"><option value="trend">Phòng Trending</option><option value="create">Phòng Sáng tạo</option><option value="strat">Phòng Chiến lược</option><option value="lead">Lead</option></select>
@@ -376,7 +389,10 @@ function renderPanel(){
  $("roomMiniSub").textContent=people.length+" thành viên · "+people.filter(function(p){return p.note.indexOf("kết nối")>=0||p.note==="Đang trực"||p.note==="Chủ"}).length+" đang hoạt động";
  $("panelMembers").innerHTML=people.map(function(p){
   return '<div class="memberrow"><span class="avatar" style="background:'+p.color+';width:36px;height:36px;flex-basis:36px;font-size:13px">'+initials(p.name)+'</span><div class="minfo"><b>'+esc(p.name)+'</b><div class="sub">'+esc(p.role)+'</div><div class="sub" style="font-size:12px">'+esc(p.note)+'</div></div>'+p.dot+'</div>'}).join("");
+ $("tabCntMembers").textContent=people.length;
+ $("tabCntFiles").textContent=FOLDERS.length;
  var open=state.jobs.filter(function(j){return j.status!=="Đã bàn giao"}).length;
+ $("tabCntJobs").textContent=open;
  var done=state.jobs.filter(function(j){return j.status==="Đã bàn giao"}).length;
  var pass=state.qc.filter(function(q){return q.result==="ĐẠT"}).length;
  var fail=state.qc.filter(function(q){return q.result==="LOẠI"}).length;
@@ -431,6 +447,11 @@ $("assignForm").addEventListener("submit",function(e){e.preventDefault();
  $("assignPanel").classList.remove("open");
  renderAll();toast("Đã giao việc "+id+" cho "+ROOMS[room].name,true);
 });
+/* ===== tab nhỏ trong panel thông tin nhóm ===== */
+document.querySelectorAll(".ptab").forEach(function(b){b.addEventListener("click",function(){
+ document.querySelectorAll(".ptab").forEach(function(x){x.classList.toggle("active",x===b)});
+ document.querySelectorAll(".ptabpane").forEach(function(p){p.classList.toggle("active",p.id==="pane-"+b.dataset.ptab)});
+})});
 /* ===== panel & cài đặt: điều hướng ===== */
 function closePanel(){$("infoPanel").classList.remove("open");$("backdrop").classList.remove("open")}
 $("panelToggle").addEventListener("click",function(){
