@@ -30,10 +30,12 @@ nav.tabs button{background:transparent;border-color:transparent;color:var(--mut)
 nav.tabs button.active{background:var(--card2);color:#fff;border-color:var(--line)}
 main{flex:1 1 auto;min-height:0;width:100%;overflow-y:auto;padding:14px}
 .topbar-note{color:var(--mut);font-size:13px;font-weight:600}
-/* 3-column chat app layout */
+/* 2-column chat layout */
 #v-chat.active{display:flex;flex-direction:column;height:100%}
-.chat-layout{display:grid;grid-template-columns:300px minmax(0,1fr) 280px;gap:14px;align-items:stretch;flex:1 1 auto;min-height:0;width:100%}
-.col-left,.col-right{overflow-y:auto;min-height:0}
+.chat-layout{display:grid;grid-template-columns:280px minmax(0,1fr);gap:14px;align-items:stretch;flex:1 1 auto;min-height:0;width:100%}
+.col-left{overflow-y:auto;min-height:0}
+#assignPanel{display:none}
+#assignPanel.open{display:block}
 .col-center{display:flex;flex-direction:column;min-height:0;min-width:0}
 .col-center .chatwrap{flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
 .side-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px}
@@ -58,8 +60,7 @@ main{flex:1 1 auto;min-height:0;width:100%;overflow-y:auto;padding:14px}
 .quicklink{display:block;padding:10px 12px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;background:var(--card2);text-decoration:none;color:var(--txt);font-weight:700;font-size:14px}
 .quicklink:hover{border-color:#4a6bb5}
 .quicklink small{color:var(--mut);display:block;font-weight:500;word-break:break-all;font-size:12px}
-@media(max-width:1100px){.chat-layout{grid-template-columns:280px minmax(0,1fr)}.col-right{display:none}}
-@media(max-width:760px){body{height:auto;overflow:visible}main{overflow:visible}#v-chat.active{height:auto}.chat-layout{grid-template-columns:1fr;height:auto}.col-left,.col-right{overflow:visible}.col-right{display:none}.col-center .chatwrap{flex:none}.chatmain{height:auto;min-height:70dvh}}
+@media(max-width:760px){body{height:auto;overflow:visible}main{overflow:visible}#v-chat.active{height:auto}.chat-layout{grid-template-columns:1fr;height:auto}.col-left{overflow:visible}.col-center .chatwrap{flex:none}.chatmain{height:auto;min-height:70dvh}}
 .view{display:none}.view.active{display:block}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
 h2{margin:0 0 6px;font-size:20px}h3{margin:0 0 8px;font-size:16px}
@@ -164,8 +165,8 @@ ol.steps li{margin:7px 0}
     <!-- CỘT TRÁI: thương hiệu + danh tính + thành viên -->
     <aside class="col-left">
       <div class="side-card">
-        <div class="side-brand">CÔNG TY NỘI DUNG YOUTUBE<span>Box chat kết nối các Muse · Sổ chung · 3 phòng · QC theo Gate</span></div>
-        <div class="side-identity"><label for="identitySel">Bạn là (tư cách gửi tin):</label>
+        <div class="side-brand">CÔNG TY NỘI DUNG YOUTUBE<span>Box chat kết nối các Muse</span></div>
+        <div class="side-identity"><label for="identitySel">Bạn là:</label>
           <select id="identitySel">
             <option>Chủ sở hữu</option><option selected>Lead</option>
             <option>Trưởng phòng Trending</option><option>Trưởng phòng Sáng tạo</option><option>Trưởng phòng Chiến lược</option>
@@ -174,8 +175,7 @@ ol.steps li{margin:7px 0}
         </div>
       </div>
       <div class="side-card">
-        <p class="side-title">Thành viên đội</p>
-        <div class="sub" style="font-size:12.5px;margin-bottom:6px">Bấm vào một thành viên để lọc tin của người đó trong khung chat.</div>
+        <p class="side-title">Thành viên</p>
         <div class="chatlist" id="chatList"></div>
         <button type="button" class="primary" id="quickAddBtn" style="width:100%;margin-top:10px">＋ Thêm Muse</button>
         <form id="quickMemberForm">
@@ -189,8 +189,7 @@ ol.steps li{margin:7px 0}
     </aside>
     <!-- CỘT GIỮA: khung chat trung tâm -->
     <div class="col-center">
-      <div class="chatstats" id="chatStats"></div>
-      <div class="card" style="margin-bottom:12px"><h3>📌 Giao việc</h3>
+      <div class="card" id="assignPanel" style="margin-bottom:12px"><h3>📌 Giao việc</h3>
         <form class="formrow" id="assignForm">
           <select id="asRoom" title="Phòng nhận việc"><option value="trend">Phòng Trending</option><option value="create">Phòng Sáng tạo</option><option value="strat">Phòng Chiến lược</option></select>
           <input required id="asTitle" placeholder="Tiêu đề việc *" style="flex:2 1 220px"/>
@@ -198,42 +197,20 @@ ol.steps li{margin:7px 0}
           <input id="asDue" type="date" title="Hạn việc" />
           <button class="primary" type="submit">Giao việc</button>
         </form>
-        <div class="sub" style="margin-top:6px">Việc mới sẽ hiện ở màn phòng tương ứng, trong ô “Gắn việc” khi soạn tin, và được thông báo ngay trong chat.</div>
       </div>
       <div class="chatwrap">
         <div class="chatmain">
-          <div class="chathead"><div class="avatar" style="background:#2f6fd0">CT</div><div><b>Chat tổng — cả đội</b><div class="sub" id="chatHeadSub">Lead làm chủ chat</div></div></div>
-          <div class="pin">📌 <b>Tin ghim:</b> Chat là nơi trao đổi — việc, bàn giao và kết luận QC phải ghi vào Sổ chung mới tính là đã làm.</div>
+          <div class="chathead"><div class="avatar" style="background:#2f6fd0">CT</div><div><b>Chat tổng — cả đội</b><div class="sub" id="chatHeadSub">Lead làm chủ chat</div><div class="sub" style="font-size:12px">Đồng bộ với Sổ chung ~15 phút/lượt</div></div><button type="button" class="small" id="assignToggle" style="margin-left:auto">📌 Giao việc</button></div>
+          <div class="pin">📌 Chat là nơi trao đổi — việc và kết luận QC ghi vào Sổ chung mới tính.</div>
           <div class="msgs" id="msgs"><div class="daysep"><span>Hôm nay</span></div><div class="empty" id="chatEmpty">Chưa có tin nhắn nào. Hãy gửi tin đầu tiên.</div></div>
           <form class="composer" id="chatForm">
-            <select id="chatType" title="Loại tin"><option value="chat">Trao đổi</option><option value="report">Báo cáo</option></select>
             <select id="chatJob" title="Gắn mã việc"><option value="">Không gắn việc</option></select>
             <input type="text" id="chatInput" placeholder="Nhập tin nhắn… (Enter để gửi)" autocomplete="off"/>
-            <button type="button" id="likeBtn" title="Gửi nhanh">👍</button>
             <button class="primary" type="submit">Gửi</button>
           </form>
         </div>
       </div>
     </div>
-    <!-- CỘT PHẢI: đường nối + việc đang mở + link nhanh -->
-    <aside class="col-right">
-      <div class="side-card">
-        <p class="side-title">Đường nối các Muse</p>
-        <div class="bridge-line"><span class="ic">🔗</span><span>Chat tổng ⇄ Sổ chung (Google Sheet)</span></div>
-        <div class="bridge-line"><span class="ic">🔄</span><span>Đồng bộ tự động ~15 phút/lượt</span></div>
-        <div class="bridge-line"><span class="ic">💬</span><span>Phòng ghi vào Sổ chung là tin hiện lên đây</span></div>
-        <div class="sub" style="font-size:12.5px;margin-top:8px">Mỗi Muse phòng chỉ cần đọc / ghi tab CHAT của Sổ chung bằng tài khoản Google của mình — không cần vào được trang web này.</div>
-      </div>
-      <div class="side-card">
-        <p class="side-title">Việc đang mở</p>
-        <div id="openJobs"></div>
-      </div>
-      <div class="side-card">
-        <p class="side-title">Link nhanh</p>
-        <a class="quicklink" href="https://docs.google.com/spreadsheets/d/17dW6JBochRn-6LLPb38oNgSqZpVQArHzZW6NQhH1juY/edit" target="_blank" rel="noopener">📊 Sổ chung (Google Sheet)<small>docs.google.com/spreadsheets/d/17dW6JBochRn-6LLPb38oNgSqZpVQArHzZW6NQhH1juY</small></a>
-        <a class="quicklink" href="https://drive.google.com/drive/folders/1xpYnY0CPk_YAxOAwqbr8BUNHT0wF3NdK" target="_blank" rel="noopener">📁 Thư mục Drive gốc<small>CONG TY NOI DUNG YOUTUBE</small></a>
-      </div>
-    </aside>
   </div>
 </section>
 
@@ -349,6 +326,12 @@ ol.steps li{margin:7px 0}
     </div>
     <p class="sub" style="margin-top:10px"><b>Lưu ý:</b> trang này chỉ khai báo hồ sơ thành viên trong giao diện. Kết nối thật chỉ hoàn tất khi tài khoản Muse đó ghi dòng điểm danh đầu tiên vào Sổ chung.</p>
   </div>
+  <div class="card"><h3>Link nhanh</h3>
+    <div class="envlist">
+      <a href="https://docs.google.com/spreadsheets/d/17dW6JBochRn-6LLPb38oNgSqZpVQArHzZW6NQhH1juY/edit" target="_blank" rel="noopener">📊 Sổ chung (Google Sheet)<small>docs.google.com/spreadsheets/d/17dW6JBochRn-6LLPb38oNgSqZpVQArHzZW6NQhH1juY</small></a>
+      <a href="https://drive.google.com/drive/folders/1xpYnY0CPk_YAxOAwqbr8BUNHT0wF3NdK" target="_blank" rel="noopener">📁 Thư mục Drive gốc — CÔNG TY NỘI DUNG YOUTUBE<small>drive.google.com/drive/folders/1xpYnY0CPk_YAxOAwqbr8BUNHT0wF3NdK</small></a>
+    </div>
+  </div>
 </section>
 </main>
 <div class="toast" id="toast"></div>
@@ -394,7 +377,8 @@ function show(v){document.querySelectorAll("nav.tabs button").forEach(function(b
 /* render */
 function stClass(s){return s==="Chờ"?"st-cho":s==="Đang làm"?"st-lam":s==="Đang QC"?"st-qc":"st-xong"}
 function renderStats(){
- $("chatStats").innerHTML=Object.keys(ROOMS).map(function(k){var r=ROOMS[k];
+ var host=$("chatStats");if(!host)return;
+ host.innerHTML=Object.keys(ROOMS).map(function(k){var r=ROOMS[k];
   var open=state.jobs.filter(function(j){return j.room===k&&j.status!=="Đã bàn giao"}).length;
   var done=state.jobs.filter(function(j){return j.room===k&&j.status==="Đã bàn giao"}).length;
   return '<div class="stat"><span style="color:'+r.color+'">●</span> <b>'+r.name+'</b> · đang mở: <b>'+open+'</b> · đã bàn giao: <b>'+done+'</b></div>'}).join("");
@@ -448,10 +432,9 @@ function renderMemberList(){
 }
 function renderChatList(){
  function item(p,presence){
-  var last=state.messages.filter(function(m){return m.from===p}).slice(-1)[0];
   var col=personColor(p);
   var sel=state.chatFilter===p;
-  return '<div class="chatitem '+(sel?"sel":"")+'" data-person="'+esc(p)+'"><div class="avatar" style="background:'+col+'">'+initials(p)+'</div><div style="min-width:0;flex:1"><b style="font-size:14px">'+esc(p)+'</b><div class="presence">'+presence+'</div>'+(last?'<div class="lastmsg">'+esc(last.text)+'</div>':"")+'</div><div class="sub" style="margin-left:auto;font-size:11.5px">'+(last?last.time.split(" ")[0]:"")+'</div></div>';
+  return '<div class="chatitem '+(sel?"sel":"")+'" data-person="'+esc(p)+'"><div class="avatar" style="background:'+col+'">'+initials(p)+'</div><div style="min-width:0;flex:1"><b style="font-size:14px">'+esc(p)+'</b><div class="presence">'+presence+'</div></div></div>';
  }
  var html=item("Chủ sở hữu",'<span class="dot"></span> Chủ trang web');
  html+=item("Lead",'<span class="dot on"></span> Đang trực');
@@ -459,10 +442,9 @@ function renderChatList(){
  if(state.members.length){
   html+=state.members.map(function(m){return item(m.name,'<span class="dot"></span> Đã khai báo — chờ kết nối')}).join("");
  }else{
-  html+='<div class="empty" style="padding:8px 4px 4px">Chưa có Muse nào được thêm.<br/>Bấm nút ＋ Thêm Muse bên dưới để thêm Muse của bạn vào khung chat.</div>';
+  html+='<div class="empty" style="padding:8px 4px 4px">Chưa có Muse nào được thêm.</div>';
  }
- var lastAll=state.messages[state.messages.length-1];
- var allItem='<div class="side-divider"></div><div class="chatitem allitem '+(!state.chatFilter?"sel":"")+'" data-person=""><div class="avatar" style="background:#2f6fd0">CT</div><div style="min-width:0;flex:1"><b style="font-size:14px">Chat tổng — cả đội</b><div class="presence"><span class="dot on"></span> Xem tất cả tin nhắn</div>'+(lastAll?'<div class="lastmsg">'+esc(lastAll.text)+'</div>':"")+'</div><div class="sub" style="margin-left:auto;font-size:11.5px">'+(lastAll?lastAll.time.split(" ")[0]:"")+'</div></div>';
+ var allItem='<div class="side-divider"></div><div class="chatitem allitem '+(!state.chatFilter?"sel":"")+'" data-person=""><div class="avatar" style="background:#2f6fd0">CT</div><div style="min-width:0;flex:1"><b style="font-size:14px">Chat tổng — cả đội</b><div class="presence"><span class="dot on"></span> Xem tất cả tin nhắn</div></div></div>';
  $("chatList").innerHTML=html+allItem;
  $("chatHeadSub").textContent=state.chatFilter?("Đang lọc: chỉ xem tin của "+state.chatFilter+" · bấm “Chat tổng — cả đội” để xem tất cả"):((2+state.members.length)+" người trong danh sách · Lead làm chủ chat");
 }
@@ -484,19 +466,17 @@ function renderMsgs(){
   return '<div class="msg '+(mine?"mine":"")+kindCls+'"><div class="avatar" style="background:'+col+';width:34px;height:34px;flex-basis:34px;font-size:12px">'+initials(m.from)+'</div><div class="'+bubCls+'">'+rep+'<div class="sender" style="color:'+(mine?"#dbeafe":col)+'">'+esc(m.from)+'</div><div>'+esc(m.text)+(m.job?' <span class="tagjob" data-openjob="'+m.job+'">'+m.job+'</span>':"")+'</div><div class="meta">'+m.time+'</div></div></div>'}).join("");
  box.innerHTML=h;box.scrollTop=box.scrollHeight;
 }
-function sendMsg(text,forceNormal){
+function sendMsg(text){
  if(!text)return;
- var type=forceNormal?"chat":$("chatType").value;
  var job=$("chatJob").value;
- if(type==="report"&&!job){toast("Tin BÁO CÁO bắt buộc gắn mã việc — hãy chọn việc ở ô “Gắn việc” trước khi gửi.");return}
- state.messages.push({from:identity(),text:text,job:job,kind:type,time:now()});
+ var kind=job?"report":"chat";
+ state.messages.push({from:identity(),text:text,job:job,kind:kind,time:now()});
  $("chatInput").value="";renderChatList();renderMsgs();
 }
 $("chatForm").addEventListener("submit",function(e){e.preventDefault();sendMsg($("chatInput").value.trim())});
-$("likeBtn").addEventListener("click",function(){if(!$("chatInput").value.trim())sendMsg("👍",true)});
+$("assignToggle").addEventListener("click",function(){$("assignPanel").classList.toggle("open")});
 $("chatList").addEventListener("click",function(e){var it=e.target.closest(".chatitem");if(!it)return;state.chatFilter=it.dataset.person||null;renderChatList();renderMsgs()});
 $("msgs").addEventListener("click",function(e){var t=e.target.closest("[data-openjob]");if(!t)return;var j=state.jobs.find(function(x){return x.id===t.dataset.openjob});if(j){show(j.room);toast("Việc "+j.id+" — đang xem ở "+ROOMS[j.room].name,true)}});
-$("openJobs").addEventListener("click",function(e){var b=e.target.closest("[data-openroom]");if(!b)return;show(b.dataset.openroom);toast("Đang xem "+ROOMS[b.dataset.openroom].name,true)});
 
 /* giao việc ngay trong chat */
 $("assignForm").addEventListener("submit",function(e){e.preventDefault();
@@ -508,6 +488,7 @@ $("assignForm").addEventListener("submit",function(e){e.preventDefault();
  addEvent(room,"Giao việc "+id+": "+title+" — người giữ "+j.owner+" (bởi "+identity()+")");
  state.messages.push({from:identity(),text:"📌 GIAO VIỆC "+id+" → "+ROOMS[room].name+": "+title+(j.due?" · hạn "+j.due:"")+" · người giữ "+j.owner,job:id,kind:"assign",time:now()});
  $("asTitle").value="";$("asOwner").value="";$("asDue").value="";
+ $("assignPanel").classList.remove("open");
  renderAll();renderMsgs();toast("Đã giao việc "+id+" cho "+ROOMS[room].name,true);
 });
 /* room actions */
