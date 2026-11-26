@@ -19,6 +19,37 @@ button.danger{background:#3a1f2a;border-color:#6b2a3a}
 button.small{min-height:32px;padding:4px 10px;font-size:13px}
 input,select,textarea{background:#0f1830;border:1px solid var(--line);color:var(--txt);border-radius:10px;padding:7px 10px}
 a{color:#7db4ff}
+/* giao diện sáng + cỡ chữ (chọn trong Cài đặt) */
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg button.active{background:var(--blue);border-color:var(--blue);color:#fff}
+body.fs-s{font-size:14px}
+body.fs-l{font-size:17px}
+body.fs-s #chatInput{font-size:15px}
+body.fs-l #chatInput{font-size:18px}
+body.light{--bg:#f2f5fa;--card:#ffffff;--card2:#edf1f8;--line:#d3dce9;--txt:#16233c;--mut:#54678a;--mut2:#7d90b8}
+body.light button{background:#e3eaf6}
+body.light button:hover{background:#d2dff3}
+body.light button.primary{background:var(--blue);border-color:var(--blue);color:#fff}
+body.light button.danger{background:#fbe9ec;border-color:#e0a3b0;color:#8a2438}
+body.light input,body.light select,body.light textarea{background:#ffffff}
+body.light a{color:#1d5fd0}
+body.light header.roomhead{background:#ffffff}
+body.light .infopanel{background:#f7f9fc}
+body.light .pin{background:#fff6d6;color:#7a5b00;border-color:#e6cf7a}
+body.light .tagjob{background:#ffffff}
+body.light .msg.assign .bubble{background:#fff6d6;color:#6b5200}
+body.light .msg.assign .meta{color:#9a7b1e}
+body.light .keybox{background:#ffffff}
+body.light .keybox code{color:#7a5b00}
+body.light .ptab:hover{background:#d2dff3;color:var(--txt)}
+body.light .jobfile:hover{background:#e8eefb}
+body.light .hardrule{background:#fdeef0;border-color:#e0a3b0;color:#8a2438}
+body.light .st-cho{background:#e3eaf6}
+body.light .st-lam{background:#dbeafe;color:#1d4ed8}
+body.light .st-qc{background:#fef3c7;color:#92400e}
+body.light .st-xong{background:#dcfce7;color:#166534}
+body.light .ok{color:#15803d}
+body.light .no{color:#dc2626}
 .avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;flex:0 0 40px;font-size:15px}
 .dot{width:9px;height:9px;border-radius:50%;flex:0 0 9px;background:#6b7a99;display:inline-block}
 .dot.on{background:#22c55e;box-shadow:0 0 0 3px rgba(34,197,94,.18)}
@@ -118,6 +149,8 @@ ul.tight{margin:6px 0;padding-left:20px}ul.tight li{margin:3px 0}
 ol.steps{margin:8px 0;padding-left:22px}ol.steps li{margin:7px 0}
 .hardrules{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
 .hardrule{flex:1 1 200px;background:#3a1f2a;border:1px solid #8a3547;color:#ffd7dc;border-radius:10px;padding:10px 12px;font-weight:800;font-size:14px;text-align:center}
+.keybox{background:#0f1830;border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin-top:8px}
+.keybox code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:15px;letter-spacing:.04em;word-break:break-all;color:#ffe08a}
 .connrow{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px}
 .connrow:last-child{border-bottom:none}
 .connrow .cinfo{flex:1;min-width:0}
@@ -134,14 +167,14 @@ ol.steps{margin:8px 0;padding-left:22px}ol.steps li{margin:7px 0}
 .backdrop{display:none}
 @media(max-width:900px){
  .layout{grid-template-columns:minmax(0,1fr)}
- .infopanel{position:fixed;top:0;right:0;bottom:0;width:min(86vw,340px);z-index:50;transform:translateX(105%);transition:transform .22s ease;box-shadow:-12px 0 32px rgba(0,0,0,.45)}
- .infopanel.open{transform:translateX(0)}
+ .infopanel{display:none;position:fixed;top:0;right:0;bottom:0;width:min(86vw,340px);z-index:50;box-shadow:-12px 0 32px rgba(0,0,0,.45)}
+ .infopanel.open{display:block}
  .backdrop{display:block;position:fixed;inset:0;background:rgba(4,8,18,.6);z-index:45;opacity:0;pointer-events:none;transition:opacity .22s ease}
  .backdrop.open{opacity:1;pointer-events:auto}
  .msg{max-width:92%}
  header.roomhead .rtitle .sub{display:none}
 }
-@media (prefers-reduced-motion: reduce){.infopanel,.backdrop{transition:none}}
+@media (prefers-reduced-motion: reduce){.backdrop{transition:none}}
 </style>
 </head>
 <body>
@@ -152,9 +185,9 @@ ol.steps{margin:8px 0;padding-left:22px}ol.steps li{margin:7px 0}
     <div class="sub">Lead — Giám đốc · Chủ phòng · điều hành phòng · Anh Ngọc — Chủ, duyệt cuối</div>
   </div>
   <div class="headbtns">
-    <button type="button" class="small" id="assignToggle">📌 Giao việc</button>
+    <button type="button" class="small" id="assignToggle">Giao việc</button>
     <button type="button" class="small" id="panelToggle">Thông tin nhóm</button>
-    <button type="button" class="small" id="settingsToggle">⚙️ Cài đặt</button>
+    <button type="button" class="small" id="settingsToggle">Cài đặt</button>
   </div>
 </header>
 
@@ -226,6 +259,30 @@ ol.steps{margin:8px 0;padding-left:22px}ol.steps li{margin:7px 0}
 <!-- ============ CÀI ĐẶT (mục riêng) ============ -->
 <section id="v-settings">
   <button type="button" class="small" id="backToRoom" style="margin-bottom:12px">← Quay lại phòng chat</button>
+  <div class="scard"><h3>Giao diện</h3>
+    <p class="sub" style="margin-bottom:6px">Chế độ màu</p>
+    <div class="seg" id="themeSeg">
+      <button type="button" data-theme="dark" class="active">Tối</button>
+      <button type="button" data-theme="light">Sáng</button>
+    </div>
+    <p class="sub" style="margin:12px 0 6px">Cỡ chữ</p>
+    <div class="seg" id="fontSeg">
+      <button type="button" data-font="s">Nhỏ</button>
+      <button type="button" data-font="m" class="active">Vừa</button>
+      <button type="button" data-font="l">Lớn</button>
+    </div>
+    <p class="sub" style="margin-top:10px;font-size:13px">Áp dụng ngay cho cả trang, giữ trong lúc trang đang mở.</p>
+  </div>
+  <div class="scard"><h3>🔑 Cấp khóa kết nối</h3>
+    <p class="sub">Mỗi Muse một khóa riêng do chính nền tảng này tự cấp — không cần khóa của bên thứ ba. Cách nối 1 Muse vào phòng:</p>
+    <ol class="steps">
+      <li>Bấm <b>Cấp khóa</b> ở dòng của Muse đó.</li>
+      <li>Bấm <b>Sao chép tin nhắn kết nối</b> rồi dán vào chat của Muse đó — Muse tự cắm đầu nối về phòng này bằng khóa vừa cấp.</li>
+      <li>Muse điểm danh 1 câu trong phòng chat là kết nối xong. Đổi khóa thì bấm <b>Cấp lại</b> (khóa cũ bị thay ngay trong danh sách này), không dùng nữa thì <b>Thu hồi</b>.</li>
+    </ol>
+    <div id="keyList"></div>
+    <p class="sub" style="margin-top:10px;font-size:13px">Bản web tĩnh này sinh khóa ngay trên trang để sao chép vào tin nhắn kết nối; việc đối chiếu khóa khi Muse điểm danh chạy ở đầu nối của nền tảng có máy chủ. Khóa chỉ lưu tạm lúc trang đang mở — đóng trang là mất, cần nối lại thì cấp khóa mới.</p>
+  </div>
   <div class="scard"><h3>Thêm Muse vào phòng chat</h3>
     <p class="sub">Khai báo Muse sẽ tham gia phòng. Muse được thêm ở đây xuất hiện ngay trong tab Thành viên của panel Thông tin nhóm, với trạng thái “Đã khai báo — chờ kết nối”.</p>
     <form class="formrow" id="memberForm" style="margin-top:10px">
@@ -236,16 +293,6 @@ ol.steps{margin:8px 0;padding-left:22px}ol.steps li{margin:7px 0}
       <button class="primary" type="submit">Thêm Muse</button>
     </form>
     <div id="memberList" style="margin-top:10px"></div>
-  </div>
-  <div class="scard"><h3>Trạng thái kết nối &amp; cách nối 1 Muse mới</h3>
-    <div id="connList"></div>
-    <p class="sub" style="margin-top:10px">Nối 1 Muse mới vào phòng — làm đủ 4 bước:</p>
-    <ol class="steps">
-      <li><b>Tạo tài khoản Muse cho phòng</b> bằng đúng email đã khai báo ở trên.</li>
-      <li><b>Chia sẻ môi trường làm việc cho email đó</b> với quyền chỉnh sửa (Editor): thư mục Drive gốc và file Sổ chung — đây là chỗ Muse đó đọc việc và ghi chat / báo cáo.</li>
-      <li><b>Dán hồ sơ phòng + quy định đứng vào tin nhắn đầu tiên</b> của tài khoản Muse đó: vai trò của phòng, luật ghi việc / chat / báo cáo vào Sổ chung, và quy tắc “lệnh từ phòng chat mà cần làm nội bộ thì mang về tài khoản của mình xử lý, chia cho các chat phụ chuyên viên”.</li>
-      <li><b>Điểm danh để hoàn tất:</b> kết nối chỉ tính là xong khi tài khoản Muse đó ghi dòng điểm danh đầu tiên vào Sổ chung và xác nhận nhận việc được trong phòng chat.</li>
-    </ol>
   </div>
   <div class="scard"><h3>Luật phòng</h3>
     <ol class="steps">
@@ -260,22 +307,6 @@ ol.steps{margin:8px 0;padding-left:22px}ol.steps li{margin:7px 0}
       <div class="hardrule">⛔ Không ghi Sổ chung = chưa làm</div>
       <div class="hardrule">⛔ Báo cáo phải gắn mã việc</div>
     </div>
-  </div>
-  <div class="scard"><h3>Sổ tay QC — chuẩn kiểm tra (Lead ban hành)</h3>
-    <table><thead><tr><th>Gate</th><th>Nội dung kiểm tra</th></tr></thead><tbody>
-      <tr><td><b>Gate 0</b><br/>Biến đổi nội dung</td><td>Chống nội dung tái dùng (reused content) của YouTube. <b>Bài kiểm:</b> người xem có nhận ra khác biệt có ý nghĩa không?
-        <ul class="tight"><li><span class="ok">ĐƯỢC:</span> viết lại thoại + thay giọng · thêm tuyến truyện + bình luận · reaction có bình luận</li>
-        <li><span class="no">KHÔNG ĐƯỢC:</span> tổng hợp ít/không lời kể · lật gương · đổi tốc độ · xin phép/ghi nguồn không cứu được</li></ul></td></tr>
-      <tr><td><b>Gate 1</b><br/>Nguồn (Trending)</td><td>Nguồn hợp lệ, đúng lệnh săn, đủ gói bằng chứng (link gốc, điểm trend, thẩm định nguồn) trước khi chuyển Sáng tạo.</td></tr>
-      <tr><td><b>Gate 2</b><br/>Thành phẩm (Sáng tạo)</td><td>Video đạt Bài kiểm biến đổi Gate 0, kỹ thuật xuất bản đạt chuẩn (âm thanh, phụ đề, đồ họa) trước khi trình duyệt đăng.</td></tr>
-      <tr><td><b>Gate 3</b><br/>Kết quả (Chiến lược)</td><td>Số liệu kết quả sau đăng được ghi nhận, bài học đúc kết và quay lại giai đoạn Phân tích.</td></tr>
-    </tbody></table>
-    <p class="sub" style="margin-top:8px">Phiên bản hiện hành: <b>v1.0</b> · ban hành 2026-11-25 bởi Lead (QC tổng).</p>
-  </div>
-  <div class="scard"><h3>Link nhanh</h3>
-    <a class="filelink" href="https://docs.google.com/spreadsheets/d/17dW6JBochRn-6LLPb38oNgSqZpVQArHzZW6NQhH1juY/edit" target="_blank" rel="noopener"><span class="fic">📊</span><span><b>Sổ chung (Google Sheet)</b><small>docs.google.com/spreadsheets/d/17dW6JBochRn-6LLPb38oNgSqZpVQArHzZW6NQhH1juY</small></span></a>
-    <a class="filelink" href="https://drive.google.com/drive/folders/1xpYnY0CPk_YAxOAwqbr8BUNHT0wF3NdK" target="_blank" rel="noopener"><span class="fic">📁</span><span><b>Thư mục Drive gốc — CÔNG TY NỘI DUNG YOUTUBE</b><small>drive.google.com/drive/folders/1xpYnY0CPk_YAxOAwqbr8BUNHT0wF3NdK</small></span></a>
-    <a class="filelink" href="https://app.agentmsgr.com" target="_blank" rel="noopener"><span class="fic">💬</span><span><b>AgentMsgr — đường dây liên phòng đang dùng</b><small>app.agentmsgr.com</small></span></a>
   </div>
 </section>
 
@@ -320,6 +351,7 @@ var FOLDERS=[
 var PCOLORS={"Chủ sở hữu":"#e0a100","Lead":"#2f6fd0","Hương":"#9b4dca","Đạt":"#e07b00","Bảo":"#0e9f7a"};
 var state={
  seq:0,
+ keys:{},
  members:[
   {name:"Hương",room:"create",role:"Trưởng phòng",email:"kennyhaidang05@gmail.com",status:"connected",note:"Đã kết nối · Đội phòng: Ngọc · Mai · Ly"},
   {name:"Đạt",room:"trend",role:"Trưởng phòng",email:"",status:"sleeping",note:"Đang ngủ · chưa kết nối"},
@@ -418,13 +450,47 @@ function renderSettings(){
  if(!state.members.length){$("memberList").innerHTML='<div class="empty">Chưa có Muse nào được thêm.</div>'}
  else{$("memberList").innerHTML=state.members.map(function(m,i){
   return '<div class="connrow"><span class="avatar" style="background:'+memberRoomColor(m)+';width:34px;height:34px;flex-basis:34px;font-size:12px">'+initials(m.name)+'</span><div class="cinfo"><b>'+esc(m.name)+'</b> <span class="tag">'+esc(memberRoomLabel(m))+'</span> <span class="tag">'+esc(m.role)+'</span><div class="sub" style="font-size:12.5px">'+(m.email?esc(m.email)+" · ":"")+esc(m.note)+'</div></div><button type="button" class="small danger" data-delmember="'+i+'">Xóa</button></div>'}).join("")}
- var rows=[
-  {name:"Lead",info:"Giám đốc · Chủ phòng — tài khoản Muse này",st:'<span class="ok">● Đã kết nối</span>'},
-  {name:"Hương",info:"QL Sáng tạo — kennyhaidang05@gmail.com · qua AgentMsgr, đội Ngọc · Mai · Ly",st:'<span class="ok">● Đã kết nối</span>'},
-  {name:"Đạt",info:"QL Trending — chưa có tài khoản Muse nối vào",st:'<span style="color:var(--mut)">● Chưa kết nối</span>'},
-  {name:"Bảo",info:"QL Chiến lược — chưa có tài khoản Muse nối vào",st:'<span style="color:var(--mut)">● Chưa kết nối</span>'}
- ];
- $("connList").innerHTML=rows.map(function(r){return '<div class="connrow"><div class="cinfo"><b>'+r.name+'</b><div class="sub" style="font-size:12.5px">'+r.info+'</div></div>'+r.st+'</div>'}).join("");
+ renderKeys();
+}
+/* ===== cấp khóa tự cấp ===== */
+function keyRec(name){if(!state.keys[name])state.keys[name]={status:"none",full:"",issued:""};return state.keys[name]}
+function genKey(){
+ var bytes=new Uint8Array(12),i,hex="";
+ if(window.crypto&&crypto.getRandomValues){crypto.getRandomValues(bytes)}else{for(i=0;i<12;i++)bytes[i]=Math.floor(Math.random()*256)}
+ for(i=0;i<12;i++){hex+=("0"+bytes[i].toString(16)).slice(-2)}
+ return "MK-"+hex.substring(0,8)+"-"+hex.substring(8,16)+"-"+hex.substring(16,24);
+}
+function connectMsg(name,key){
+ return "Kết nối vào Phòng chat — Công ty Nội dung YouTube.\nKhóa kết nối của bạn: "+key+"\nHãy dùng khóa này cắm đầu nối về nền tảng của phòng, vào phòng chat và điểm danh 1 câu xác nhận. Việc chỉ nhận khi được giao trong phòng chat, báo cáo gắn mã việc.";
+}
+function copyText(txt,okMsg){
+ function fallback(){var ta=document.createElement("textarea");ta.value=txt;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();var ok=false;try{ok=document.execCommand("copy")}catch(e){}document.body.removeChild(ta);if(ok){toast(okMsg,true)}else{toast("Không sao chép tự động được — hãy bôi đen khóa và copy tay.")}}
+ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){toast(okMsg,true)},fallback)}else{fallback()}
+}
+function keyPeople(){
+ var list=[{name:"Lead",sub:"Giám đốc · Chủ phòng",color:"#2f6fd0"}];
+ state.members.forEach(function(m){list.push({name:m.name,sub:memberRoomLabel(m)+" · "+m.role,color:memberRoomColor(m)})});
+ return list;
+}
+function renderKeys(){
+ var box=$("keyList");if(!box)return;
+ box.innerHTML=keyPeople().map(function(p){
+  var k=keyRec(p.name);
+  var badge=k.status==="active"?'<span class="tag" style="color:#1fae62;border-color:#1fae62">Đã cấp khóa</span>':k.status==="revoked"?'<span class="tag" style="color:#e05252;border-color:#e05252">Đã thu hồi</span>':'<span class="tag">Chưa cấp khóa</span>';
+  var body="";
+  if(k.status==="active"){
+   body='<div class="keybox"><code>'+esc(k.full)+'</code></div>'
+   +'<div class="sub" style="font-size:12px;margin-top:4px">Cấp lúc '+esc(k.issued)+'</div>'
+   +'<div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px">'
+   +'<button type="button" class="small primary" data-keymsg="'+esc(p.name)+'">Sao chép tin nhắn kết nối</button>'
+   +'<button type="button" class="small" data-keycopy="'+esc(p.name)+'">Sao chép khóa</button>'
+   +'<button type="button" class="small" data-keyissue="'+esc(p.name)+'">Cấp lại</button>'
+   +'<button type="button" class="small danger" data-keyrevoke="'+esc(p.name)+'">Thu hồi</button></div>';
+  }else{
+   body='<div style="margin-top:8px"><button type="button" class="small primary" data-keyissue="'+esc(p.name)+'">'+(k.status==="revoked"?"Cấp khóa mới":"Cấp khóa")+'</button></div>';
+  }
+  return '<div class="connrow"><span class="avatar" style="background:'+p.color+';width:36px;height:36px;flex-basis:36px;font-size:13px">'+initials(p.name)+'</span><div class="cinfo"><b>'+esc(p.name)+'</b> '+badge+'<div class="sub" style="font-size:12.5px">'+esc(p.sub)+'</div>'+body+'</div></div>';
+ }).join("");
 }
 function renderAll(){renderIdentity();renderMsgs();renderPanel();renderSettings()}
 
@@ -462,10 +528,10 @@ $("backdrop").addEventListener("click",closePanel);
 $("settingsToggle").addEventListener("click",function(){
  var s=$("v-settings");var opening=!s.classList.contains("active");
  s.classList.toggle("active",opening);$("v-room").classList.toggle("hidden",opening);
- $("settingsToggle").textContent=opening?"💬 Phòng chat":"⚙️ Cài đặt";closePanel();
+ $("settingsToggle").textContent=opening?"Phòng chat":"Cài đặt";closePanel();
 });
 $("backToRoom").addEventListener("click",function(){
- $("v-settings").classList.remove("active");$("v-room").classList.remove("hidden");$("settingsToggle").textContent="⚙️ Cài đặt";
+ $("v-settings").classList.remove("active");$("v-room").classList.remove("hidden");$("settingsToggle").textContent="Cài đặt";
 });
 $("identitySel").addEventListener("change",function(){renderMsgs()});
 /* ===== chi tiết việc + QC ===== */
@@ -497,7 +563,15 @@ document.addEventListener("click",function(e){
   if(!hasPass(j2)){toast("⛔ Không bàn giao được: việc "+j2.id+" chưa có kết luận QC ĐẠT. Hãy chấm ĐẠT (kèm bằng chứng) ngay bên dưới rồi bàn giao.");return}
   j2.status="Đã bàn giao";renderAll();openJob(j2.id);toast("Đã bàn giao việc "+j2.id+" lên Lead ✓",true);return}
  var del=e.target.closest("[data-delmember]");
- if(del){var m=state.members.splice(Number(del.dataset.delmember),1)[0];renderAll();toast("Đã xóa thành viên "+(m?m.name:""),true)}
+ if(del){var m=state.members.splice(Number(del.dataset.delmember),1)[0];if(m)delete state.keys[m.name];renderAll();toast("Đã xóa thành viên "+(m?m.name:""),true);return}
+ var ki=e.target.closest("[data-keyissue]");
+ if(ki){var nm=ki.dataset.keyissue;var rec=keyRec(nm);var was=rec.status;rec.status="active";rec.full=genKey();rec.issued=now();renderSettings();toast((was==="active"?"Đã cấp lại khóa mới cho ":"Đã cấp khóa cho ")+nm+" — sao chép tin nhắn kết nối và dán vào Muse đó",true);return}
+ var kr=e.target.closest("[data-keyrevoke]");
+ if(kr){var rec2=keyRec(kr.dataset.keyrevoke);rec2.status="revoked";rec2.full="";renderSettings();toast("Đã thu hồi khóa của "+kr.dataset.keyrevoke,true);return}
+ var kc=e.target.closest("[data-keycopy]");
+ if(kc){copyText(keyRec(kc.dataset.keycopy).full,"Đã sao chép khóa của "+kc.dataset.keycopy);return}
+ var km=e.target.closest("[data-keymsg]");
+ if(km){copyText(connectMsg(km.dataset.keymsg,keyRec(km.dataset.keymsg).full),"Đã sao chép tin nhắn kết nối — dán vào chat của "+km.dataset.keymsg);return}
 });
 $("jmQcForm").addEventListener("submit",function(e){e.preventDefault();$("jmQcErr").textContent="";
  if(!state.openJobId)return;
@@ -512,6 +586,22 @@ $("memberForm").addEventListener("submit",function(e){e.preventDefault();
  state.members.push({name:name,room:$("mRoom").value,role:$("mRole").value,email:email,status:"declared",note:"Đã khai báo — chờ kết nối"});
  $("mName").value="";$("mEmail").value="";
  renderAll();toast("Đã thêm Muse “"+name+"” — trạng thái: Đã khai báo, chờ kết nối",true);
+});
+/* ===== giao diện: sáng/tối + cỡ chữ ===== */
+function segWire(id,attr,fn){
+ var seg=$(id);if(!seg)return;
+ seg.querySelectorAll("button").forEach(function(b){b.addEventListener("click",function(){
+  seg.querySelectorAll("button").forEach(function(x){x.classList.toggle("active",x===b)});
+  fn(b.dataset[attr]);
+ })});
+}
+segWire("themeSeg","theme",function(v){
+ document.body.classList.toggle("light",v==="light");
+ document.documentElement.style.colorScheme=v;
+});
+segWire("fontSeg","font",function(v){
+ document.body.classList.remove("fs-s","fs-l");
+ if(v!=="m")document.body.classList.add("fs-"+v);
 });
 renderAll();
 </script>
