@@ -19,37 +19,6 @@ button.danger{background:#3a1f2a;border-color:#6b2a3a}
 button.small{min-height:32px;padding:4px 10px;font-size:13px}
 input,select,textarea{background:#0f1830;border:1px solid var(--line);color:var(--txt);border-radius:10px;padding:7px 10px}
 a{color:#7db4ff}
-/* giao diện sáng + cỡ chữ (chọn trong Cài đặt) */
-.seg{display:flex;gap:6px;flex-wrap:wrap}
-.seg button.active{background:var(--blue);border-color:var(--blue);color:#fff}
-body.fs-s{font-size:14px}
-body.fs-l{font-size:17px}
-body.fs-s #chatInput{font-size:15px}
-body.fs-l #chatInput{font-size:18px}
-body.light{--bg:#f2f5fa;--card:#ffffff;--card2:#edf1f8;--line:#d3dce9;--txt:#16233c;--mut:#54678a;--mut2:#7d90b8}
-body.light button{background:#e3eaf6}
-body.light button:hover{background:#d2dff3}
-body.light button.primary{background:var(--blue);border-color:var(--blue);color:#fff}
-body.light button.danger{background:#fbe9ec;border-color:#e0a3b0;color:#8a2438}
-body.light input,body.light select,body.light textarea{background:#ffffff}
-body.light a{color:#1d5fd0}
-body.light header.roomhead{background:#ffffff}
-body.light .infopanel{background:#f7f9fc}
-body.light .pin{background:#fff6d6;color:#7a5b00;border-color:#e6cf7a}
-body.light .tagjob{background:#ffffff}
-body.light .msg.assign .bubble{background:#fff6d6;color:#6b5200}
-body.light .msg.assign .meta{color:#9a7b1e}
-body.light .keybox{background:#ffffff}
-body.light .keybox code{color:#7a5b00}
-body.light .ptab:hover{background:#d2dff3;color:var(--txt)}
-body.light .jobfile:hover{background:#e8eefb}
-body.light .hardrule{background:#fdeef0;border-color:#e0a3b0;color:#8a2438}
-body.light .st-cho{background:#e3eaf6}
-body.light .st-lam{background:#dbeafe;color:#1d4ed8}
-body.light .st-qc{background:#fef3c7;color:#92400e}
-body.light .st-xong{background:#dcfce7;color:#166534}
-body.light .ok{color:#15803d}
-body.light .no{color:#dc2626}
 .avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;flex:0 0 40px;font-size:15px}
 .dot{width:9px;height:9px;border-radius:50%;flex:0 0 9px;background:#6b7a99;display:inline-block}
 .dot.on{background:#22c55e;box-shadow:0 0 0 3px rgba(34,197,94,.18)}
@@ -58,28 +27,29 @@ body.light .no{color:#dc2626}
 .tag{display:inline-block;padding:1px 8px;border-radius:999px;border:1px solid var(--line);font-size:12px;font-weight:700}
 .empty{color:var(--mut);text-align:center;padding:16px;font-size:14px}
 /* header phòng chat */
-header.roomhead{flex:0 0 auto;background:#0d1730;border-bottom:1px solid var(--line);padding:9px 14px;display:flex;gap:12px;align-items:center;z-index:30}
+header.roomhead{flex:0 0 auto;background:#0d1730;border-bottom:1px solid var(--line);padding:7px 12px;display:flex;gap:10px;align-items:center;z-index:30}
 header.roomhead .rtitle{min-width:0}
 header.roomhead .rtitle b{font-size:16.5px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 header.roomhead .rtitle .sub{font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .headbtns{margin-left:auto;display:flex;gap:8px;flex:0 0 auto}
 /* layout 2 cột: chat + panel thông tin */
+#v-room{display:flex;flex-direction:column;flex:1 1 auto;min-height:0}
 .layout{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 332px;width:100%}
 .chatcol{display:flex;flex-direction:column;min-height:0;min-width:0}
-#assignPanel{display:none;margin:12px 12px 0}
+#assignPanel{display:none;margin:8px 10px 0}
 #assignPanel.open{display:block}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px}
 .formrow{display:flex;gap:8px;flex-wrap:wrap}
 .formrow input,.formrow select{flex:1 1 160px}
 h3{margin:0 0 8px;font-size:16px}
 /* khung chat */
-.pin{margin:12px 12px 0;padding:9px 14px;background:#2a2410;border:1px solid var(--line);border-radius:12px;color:#ffe08a;font-size:13.5px}
-.msgs{flex:1;overflow:auto;padding:14px;display:flex;flex-direction:column;gap:12px}
+.pin{margin:8px 10px 0;padding:6px 12px;background:#2a2410;border:1px solid var(--line);border-radius:12px;color:#ffe08a;font-size:13.5px}
+.msgs{flex:1;overflow:auto;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
 .daysep{text-align:center;color:var(--mut);font-size:12px}
 .daysep span{background:var(--card2);border:1px solid var(--line);padding:2px 12px;border-radius:999px}
 .msg{display:flex;gap:8px;max-width:82%}
 .msg.mine{align-self:flex-end;flex-direction:row-reverse}
-.bubble{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:9px 12px}
+.bubble{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:7px 11px}
 .msg.mine .bubble{background:var(--blue);border-color:var(--blue);color:#fff}
 .sender{font-size:12.5px;font-weight:800;margin-bottom:2px}
 .meta{font-size:11.5px;color:var(--mut);margin-top:3px}
@@ -90,22 +60,22 @@ h3{margin:0 0 8px;font-size:16px}
 .msg.assign .meta{color:#d9b45c}
 .bubble.report{border:2px solid #ffb020}
 .replabel{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.05em;background:#ffb020;color:#1a1405;border-radius:999px;padding:1px 8px;margin-bottom:4px}
-.composer{border-top:1px solid var(--line);padding:10px 12px 12px;display:flex;flex-direction:column;gap:8px;background:var(--card)}
+.composer{border-top:1px solid var(--line);padding:8px 10px 10px;display:flex;flex-direction:column;gap:8px;background:var(--card)}
 .composer .crow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .composer .who{display:flex;align-items:center;gap:6px}
 .composer .who label{color:var(--mut);font-size:12.5px;font-weight:700;white-space:nowrap}
 #identitySel{width:150px;max-width:42vw}
 #chatJob{width:210px;max-width:56vw}
 .composer .sendrow{display:flex;gap:8px;align-items:stretch}
-#chatInput{flex:1 1 auto;min-width:0;min-height:50px;font-size:16px;padding:12px 14px;border-radius:12px}
-.composer .sendrow button.primary{min-height:50px;padding:6px 24px;font-size:15px;border-radius:12px}
+#chatInput{flex:1 1 auto;min-width:0;min-height:44px;font-size:16px;padding:10px 12px;border-radius:12px}
+.composer .sendrow button.primary{min-height:44px;padding:6px 24px;font-size:15px;border-radius:12px}
 /* panel thông tin nhóm (phải) */
-.infopanel{border-left:1px solid var(--line);background:#0d1730;overflow-y:auto;padding:14px;min-height:0}
-.psec{border-bottom:1px solid var(--line);padding:12px 0}
+.infopanel{border-left:1px solid var(--line);background:#0d1730;overflow-y:auto;padding:10px;min-height:0}
+.psec{border-bottom:1px solid var(--line);padding:8px 0}
 .psec:first-child{padding-top:0}
 .psec:last-child{border-bottom:none}
 .ptitle{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);margin:0 0 10px}
-.ptabs{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 2px}
+.ptabs{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}
 .ptab{flex:1 1 auto;min-height:32px;padding:4px 9px;font-size:12.5px;font-weight:700;border-radius:999px;background:var(--card2);color:var(--mut);border:1px solid var(--line);white-space:nowrap}
 .ptab:hover{color:var(--txt);background:#22315a}
 .ptab.active{background:var(--blue);border-color:var(--blue);color:#fff}
@@ -116,44 +86,26 @@ h3{margin:0 0 8px;font-size:16px}
 .roommini{display:flex;gap:10px;align-items:center}
 .roommini b{font-size:15.5px;display:block}
 .statgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.statbox{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:9px 12px}
+.statbox{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:7px 10px}
 .statbox b{font-size:19px;display:block;line-height:1.2}
 .statbox span{font-size:12.5px;color:var(--mut)}
-.memberrow{display:flex;gap:10px;align-items:center;padding:7px 0}
+.memberrow{display:flex;gap:10px;align-items:center;padding:5px 0}
 .memberrow .minfo{flex:1;min-width:0}
 .memberrow .minfo b{font-size:14px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .memberrow .minfo .sub{font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.boardline{display:flex;gap:9px;align-items:flex-start;padding:7px 0;font-size:14px}
+.boardline{display:flex;gap:9px;align-items:flex-start;padding:5px 0;font-size:14px}
 .boardline .ic{flex:0 0 auto}
-.filelink{display:flex;gap:10px;align-items:center;padding:9px 11px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;background:var(--card2);text-decoration:none;color:var(--txt)}
+.filelink{display:flex;gap:10px;align-items:center;padding:7px 10px;border:1px solid var(--line);border-radius:10px;margin-bottom:6px;background:var(--card2);text-decoration:none;color:var(--txt)}
 .filelink:hover{border-color:#4a6bb5}
 .filelink .fic{font-size:19px;flex:0 0 auto}
 .filelink b{font-size:13.5px;display:block}
 .filelink small{color:var(--mut);display:block;font-weight:500;word-break:break-all;font-size:11.5px}
-.jobfile{display:block;width:100%;text-align:left;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:9px 11px;margin-bottom:8px;color:var(--txt)}
+.jobfile{display:block;width:100%;text-align:left;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:7px 10px;margin-bottom:6px;color:var(--txt)}
 .jobfile:hover{border-color:#4a6bb5;background:#1f2d52}
 .jobfile b{font-size:13px}
 .jobfile .sub{font-size:12.5px}
 .st-cho{background:#24304f}.st-lam{background:#1d3557;color:#9ecbff}.st-qc{background:#3a2f14;color:#ffd166}.st-xong{background:#123526;color:#6ee7a7}
 .sttag{display:inline-block;padding:1px 8px;border-radius:999px;border:1px solid var(--line);font-size:11.5px;font-weight:700}
-/* màn cài đặt */
-#v-settings{display:none;flex:1 1 auto;min-height:0;overflow-y:auto;padding:14px}
-#v-settings.active{display:block}
-#v-room{display:flex;flex-direction:column;flex:1 1 auto;min-height:0}
-#v-room.hidden{display:none}
-.scard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px;max-width:980px}
-table{width:100%;border-collapse:collapse;font-size:14px}
-th,td{border-bottom:1px solid var(--line);padding:8px;text-align:left;vertical-align:top}
-th{color:var(--mut);font-size:12px;text-transform:uppercase;letter-spacing:.05em}
-ul.tight{margin:6px 0;padding-left:20px}ul.tight li{margin:3px 0}
-ol.steps{margin:8px 0;padding-left:22px}ol.steps li{margin:7px 0}
-.hardrules{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.hardrule{flex:1 1 200px;background:#3a1f2a;border:1px solid #8a3547;color:#ffd7dc;border-radius:10px;padding:10px 12px;font-weight:800;font-size:14px;text-align:center}
-.keybox{background:#0f1830;border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin-top:8px}
-.keybox code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:15px;letter-spacing:.04em;word-break:break-all;color:#ffe08a}
-.connrow{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px}
-.connrow:last-child{border-bottom:none}
-.connrow .cinfo{flex:1;min-width:0}
 /* modal chi tiết việc */
 .modalwrap{position:fixed;inset:0;background:rgba(4,8,18,.72);z-index:60;display:none;align-items:flex-end;justify-content:center}
 .modalwrap.open{display:flex}
@@ -175,6 +127,83 @@ ol.steps{margin:8px 0;padding-left:22px}ol.steps li{margin:7px 0}
  header.roomhead .rtitle .sub{display:none}
 }
 @media (prefers-reduced-motion: reduce){.backdrop{transition:none}}
+/* ===== CÀI ĐẶT GỌN — 1 màn hình, không cuộn trang ===== */
+.setwrap{position:fixed;inset:0;z-index:70;background:var(--bg);display:none;flex-direction:column}
+.setwrap.open{display:flex}
+.sethead{flex:0 0 auto;display:flex;align-items:center;gap:10px;padding:8px 12px;border-bottom:1px solid var(--line);background:#0d1730}
+.sethead b{font-size:16px}
+.setgrid{flex:1 1 auto;min-height:0;display:grid;gap:10px;padding:10px;grid-template-columns:minmax(0,1fr) minmax(0,1fr);overflow:hidden}
+.setcol{display:flex;flex-direction:column;gap:10px;min-height:0;overflow-y:auto;padding-right:2px}
+.spanel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:9px 12px;flex:0 0 auto}
+.spanel h3{font-size:13.5px;margin:0 0 7px;letter-spacing:.04em}
+.spanel .hint{font-size:12px;color:var(--mut);margin:0 0 6px}
+.pillstat{margin-left:auto;font-size:12.5px;color:var(--mut);border:1px solid var(--line);background:var(--card2);border-radius:999px;padding:3px 12px;white-space:nowrap}
+.sttag2{display:inline-block;padding:1px 9px;border-radius:999px;font-size:11.5px;font-weight:700;white-space:nowrap}
+.sttag2.on{background:#123526;color:#6ee7a7}
+.sttag2.mid{background:#1d3557;color:#9ecbff}
+.sttag2.off{background:#24304f;color:var(--mut)}
+button.confirming{background:#8a2432!important;border-color:#c24355!important;color:#fff!important}
+.chiprow{display:flex;flex-wrap:wrap;gap:7px}
+.chip{display:inline-flex;align-items:center;gap:6px;background:var(--card2);border:1px solid var(--line);border-radius:999px;padding:4px 6px 4px 12px;font-size:13px;font-weight:600;color:var(--txt);text-decoration:none}
+.chip:hover{border-color:#4a6bb5}
+.chip .cx{min-height:20px;min-width:20px;padding:0 4px;border-radius:50%;font-size:12px;line-height:1;background:transparent;border:none;color:var(--mut)}
+.chip .cx:hover{color:#ff8a8a;background:rgba(255,90,90,.12)}
+.lawrow{display:flex;gap:8px;align-items:flex-start;padding:4px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+.lawrow:last-of-type{border-bottom:none}
+.lawrow .lx{flex:1;min-width:0;cursor:text}
+.lawrow .lx b{font-weight:700}
+.lawrow button{min-height:24px;min-width:24px;padding:0 5px;font-size:12px;line-height:1}
+.lawrow input{flex:1;min-height:28px;font-size:13.5px;padding:3px 8px}
+.checkrow{display:flex;gap:8px;margin-top:8px}
+.checkrow input{flex:1;min-height:34px}
+.checkres{font-size:13px;margin-top:6px;font-weight:600}
+.verpill{display:inline-block;padding:1px 9px;border-radius:999px;background:#123526;color:#6ee7a7;font-size:12px;font-weight:700}
+.krow{display:flex;gap:10px;align-items:center;padding:6px 0;border-bottom:1px solid var(--line)}
+.krow:last-child{border-bottom:none}
+.kname{flex:0 1 190px;min-width:120px}
+.kname b{display:block;font-size:13.5px;line-height:1.3;white-space:normal}
+.kname span{display:block;font-size:12px;color:var(--mut);line-height:1.3}
+.kkey{display:flex;align-items:center;gap:3px;flex:0 0 auto}
+.keymask{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;letter-spacing:.02em;background:#0f1830;border:1px solid var(--line);border-radius:8px;padding:3px 8px}
+.copyic{min-height:28px;min-width:30px;padding:2px 6px;font-size:15px;line-height:1;border-radius:8px}
+.kacts{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.kacts button{min-height:30px;padding:3px 9px;font-size:12.5px}
+.arow{display:flex;gap:8px;align-items:center;padding:5px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+.arow:last-child{border-bottom:none}
+.arow .ainfo{flex:1;min-width:0}
+.arow .ainfo b{display:block;font-size:13.5px;line-height:1.3}
+.arow .ainfo span{font-size:12px;color:var(--mut)}
+.arow button{min-height:28px;padding:2px 9px;font-size:12.5px}
+.addform{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.addform input,.addform select{flex:1 1 110px;min-height:32px;padding:5px 8px;font-size:13.5px}
+.addform button{min-height:32px;padding:4px 12px;font-size:13.5px}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg button.active{background:var(--blue);border-color:var(--blue);color:#fff}
+.uiline{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:4px 0}
+.uiline .ulabel{flex:0 0 74px;font-size:13px;font-weight:700;color:var(--mut)}
+@media(max-width:900px){
+ .setwrap{overflow-y:auto}
+ .setgrid{display:block;padding:8px}
+ .spanel{margin-bottom:8px;overflow:visible}
+ .krow{flex-wrap:wrap}
+ .kacts{margin-left:0}
+}
+/* ===== Giao diện sáng ===== */
+html[data-theme="light"]{--bg:#edf1f8;--card:#ffffff;--card2:#eef2fa;--line:#c3d0e6;--txt:#17263f;--mut:#54678a;--mut2:#7186ab;color-scheme:light}
+html[data-theme="light"] header.roomhead,html[data-theme="light"] .infopanel,html[data-theme="light"] .sethead{background:#e2e9f6}
+html[data-theme="light"] button{background:#dde6f5;color:var(--txt)}
+html[data-theme="light"] button:hover{background:#cdd9ef}
+html[data-theme="light"] button.primary{background:var(--blue);color:#fff}
+html[data-theme="light"] input,html[data-theme="light"] select,html[data-theme="light"] textarea,html[data-theme="light"] .keymask{background:#ffffff;color:var(--txt)}
+html[data-theme="light"] .pin{background:#fdf0c2;color:#7a5b00}
+html[data-theme="light"] .msg.assign .bubble{background:#fdf0c2;color:#5c4300}
+html[data-theme="light"] .tagjob{background:#eef2fa;color:var(--txt)}
+/* ===== Cỡ chữ (bản tĩnh: Nhỏ / Vừa / Lớn) ===== */
+html[data-font="s"] body{font-size:14px}
+html[data-font="l"] body{font-size:17px}
+html[data-font="l"] .sub{font-size:15px}
+html[data-font="l"] .sender{font-size:13.5px}
+html[data-font="l"] .kname b{font-size:14.5px}
 </style>
 </head>
 <body>
@@ -182,12 +211,12 @@ ol.steps{margin:8px 0;padding-left:22px}ol.steps li{margin:7px 0}
   <div class="avatar" style="background:#2f6fd0">YT</div>
   <div class="rtitle">
     <b>Phòng chat — Công ty Nội dung YouTube</b>
-    <div class="sub">Lead — Giám đốc · Chủ phòng · điều hành phòng · Anh Ngọc — Chủ, duyệt cuối</div>
+    <div class="sub">Lead — Giám đốc · Anh Ngọc — Chủ</div>
   </div>
   <div class="headbtns">
     <button type="button" class="small" id="assignToggle">Giao việc</button>
     <button type="button" class="small" id="panelToggle">Thông tin nhóm</button>
-    <button type="button" class="small" id="settingsToggle">Cài đặt</button>
+    <button type="button" class="small" id="setToggle">Cài đặt</button>
   </div>
 </header>
 
@@ -205,11 +234,11 @@ ol.steps{margin:8px 0;padding-left:22px}ol.steps li{margin:7px 0}
           <button class="primary" type="submit">Giao việc</button>
         </form>
       </div>
-      <div class="pin">📌 Phòng chat duy nhất của công ty — Lead là Giám đốc kiêm Chủ phòng, điều hành trực tiếp trong phòng. Việc và kết luận QC ghi vào Sổ chung mới tính.</div>
+      <div class="pin">📌 Việc &amp; kết luận QC ghi vào Sổ chung mới tính.</div>
       <div class="msgs" id="msgs"></div>
       <form class="composer" id="chatForm">
         <div class="crow">
-          <div class="who"><label for="identitySel">Đang nhắn với tư cách:</label>
+          <div class="who"><label for="identitySel">Người gửi:</label>
             <select id="identitySel"></select>
           </div>
           <select id="chatJob" title="Gắn mã việc"><option value="">Không gắn việc</option></select>
@@ -248,67 +277,12 @@ ol.steps{margin:8px 0;padding-left:22px}ol.steps li{margin:7px 0}
         <div id="panelFiles"></div>
       </div>
       <div class="ptabpane" id="pane-jobs">
-        <p class="sub" style="margin:0 0 8px;font-size:13px">Hồ sơ theo việc — chạm vào việc để xem chi tiết &amp; chấm QC.</p>
         <div id="panelJobs"></div>
       </div>
     </aside>
   </div>
 </div>
 <div class="backdrop" id="backdrop"></div>
-
-<!-- ============ CÀI ĐẶT (mục riêng) ============ -->
-<section id="v-settings">
-  <button type="button" class="small" id="backToRoom" style="margin-bottom:12px">← Quay lại phòng chat</button>
-  <div class="scard"><h3>Giao diện</h3>
-    <p class="sub" style="margin-bottom:6px">Chế độ màu</p>
-    <div class="seg" id="themeSeg">
-      <button type="button" data-theme="dark" class="active">Tối</button>
-      <button type="button" data-theme="light">Sáng</button>
-    </div>
-    <p class="sub" style="margin:12px 0 6px">Cỡ chữ</p>
-    <div class="seg" id="fontSeg">
-      <button type="button" data-font="s">Nhỏ</button>
-      <button type="button" data-font="m" class="active">Vừa</button>
-      <button type="button" data-font="l">Lớn</button>
-    </div>
-    <p class="sub" style="margin-top:10px;font-size:13px">Áp dụng ngay cho cả trang, giữ trong lúc trang đang mở.</p>
-  </div>
-  <div class="scard"><h3>🔑 Cấp khóa kết nối</h3>
-    <p class="sub">Mỗi Muse một khóa riêng do chính nền tảng này tự cấp — không cần khóa của bên thứ ba. Cách nối 1 Muse vào phòng:</p>
-    <ol class="steps">
-      <li>Bấm <b>Cấp khóa</b> ở dòng của Muse đó.</li>
-      <li>Bấm <b>Sao chép tin nhắn kết nối</b> rồi dán vào chat của Muse đó — Muse tự cắm đầu nối về phòng này bằng khóa vừa cấp.</li>
-      <li>Muse điểm danh 1 câu trong phòng chat là kết nối xong. Đổi khóa thì bấm <b>Cấp lại</b> (khóa cũ bị thay ngay trong danh sách này), không dùng nữa thì <b>Thu hồi</b>.</li>
-    </ol>
-    <div id="keyList"></div>
-    <p class="sub" style="margin-top:10px;font-size:13px">Bản web tĩnh này sinh khóa ngay trên trang để sao chép vào tin nhắn kết nối; việc đối chiếu khóa khi Muse điểm danh chạy ở đầu nối của nền tảng có máy chủ. Khóa chỉ lưu tạm lúc trang đang mở — đóng trang là mất, cần nối lại thì cấp khóa mới.</p>
-  </div>
-  <div class="scard"><h3>Thêm Muse vào phòng chat</h3>
-    <p class="sub">Khai báo Muse sẽ tham gia phòng. Muse được thêm ở đây xuất hiện ngay trong tab Thành viên của panel Thông tin nhóm, với trạng thái “Đã khai báo — chờ kết nối”.</p>
-    <form class="formrow" id="memberForm" style="margin-top:10px">
-      <input required id="mName" placeholder="Tên hiển thị *"/>
-      <select id="mRoom" title="Phòng"><option value="trend">Phòng Trending</option><option value="create">Phòng Sáng tạo</option><option value="strat">Phòng Chiến lược</option><option value="lead">Lead</option></select>
-      <select id="mRole" title="Vai trò"><option>Trưởng phòng</option><option>Chuyên viên</option><option>QC phòng</option></select>
-      <input required id="mEmail" type="email" placeholder="Email tài khoản Muse *"/>
-      <button class="primary" type="submit">Thêm Muse</button>
-    </form>
-    <div id="memberList" style="margin-top:10px"></div>
-  </div>
-  <div class="scard"><h3>Luật phòng</h3>
-    <ol class="steps">
-      <li><b>Đọc Sổ chung trước:</b> đọc tab VIEC + tab CHAT để nắm việc đang mở và tin mới nhất.</li>
-      <li><b>Nhận việc trong phòng chat:</b> việc được giao có mã (VC-xxxx), ghi rõ ai giữ và hạn nào — nhận đúng việc của phòng mình.</li>
-      <li><b>Báo cáo tiến độ ngay trong phòng chat</b> bằng tin loại Báo cáo, bắt buộc gắn mã việc.</li>
-      <li><b>QC chấm ĐẠT / LOẠI kèm bằng chứng</b> — chấm ngay trong chi tiết việc ở panel Thông tin nhóm.</li>
-      <li><b>Bàn giao lên Lead:</b> kết quả ghi vào Sổ chung + Drive; bài học đúc kết chuyển cho phòng Chiến lược.</li>
-    </ol>
-    <div class="hardrules">
-      <div class="hardrule">⛔ Chưa QC ĐẠT — không bàn giao</div>
-      <div class="hardrule">⛔ Không ghi Sổ chung = chưa làm</div>
-      <div class="hardrule">⛔ Báo cáo phải gắn mã việc</div>
-    </div>
-  </div>
-</section>
 
 <!-- ============ MODAL CHI TIẾT VIỆC ============ -->
 <div class="modalwrap" id="jobModalWrap">
@@ -331,6 +305,104 @@ ol.steps{margin:8px 0;padding-left:22px}ol.steps li{margin:7px 0}
     <div id="jmQcList"></div>
   </div>
 </div>
+<!-- ============ CÀI ĐẶT GỌN (1 màn hình) ============ -->
+<div class="setwrap" id="setWrap" aria-label="Cài đặt">
+  <div class="sethead">
+    <b>⚙ Cài đặt</b>
+    <span class="pillstat" id="setPill"></span>
+    <button type="button" class="small" id="setClose">← Phòng chat</button>
+  </div>
+  <div class="setgrid">
+    <!-- CỘT TRÁI -->
+    <div class="setcol">
+      <section class="spanel" id="spUi">
+        <h3>GIAO DIỆN</h3>
+        <div class="uiline"><span class="ulabel">Nền:</span>
+          <span class="seg" id="themeSeg">
+            <button type="button" class="small" data-theme-set="light">Sáng</button>
+            <button type="button" class="small active" data-theme-set="dark">Tối</button>
+          </span>
+        </div>
+        <div class="uiline"><span class="ulabel">Cỡ chữ:</span>
+          <span class="seg" id="fontSeg">
+            <button type="button" class="small" data-font-set="s">Nhỏ</button>
+            <button type="button" class="small active" data-font-set="m">Vừa</button>
+            <button type="button" class="small" data-font-set="l">Lớn</button>
+          </span>
+        </div>
+      </section>
+      <section class="spanel" id="spAdd">
+        <h3>THÊM CLAUDE</h3>
+        <form id="addForm">
+          <div class="addform" style="margin-top:0">
+            <input required id="addName" placeholder="Tên hiển thị *"/>
+            <input required id="addEmail" type="email" placeholder="Email tài khoản Muse *"/>
+          </div>
+          <div class="addform">
+            <select id="addRoom" title="Phòng">
+              <option value="trend">Phòng: Trending</option>
+              <option value="create" selected>Phòng: Sáng tạo</option>
+              <option value="strat">Phòng: Chiến lược</option>
+              <option value="lead">Phòng: Chat tổng</option>
+            </select>
+            <select id="addRole" title="Vai trò">
+              <option>Trưởng phòng</option>
+              <option selected>Chuyên viên</option>
+              <option>QC phòng</option>
+            </select>
+            <button class="primary" type="submit">＋ Thêm Muse</button>
+          </div>
+        </form>
+        <div id="addedBox" style="margin-top:8px"></div>
+      </section>
+      <section class="spanel" id="spShort">
+        <h3>LỐI TẮT</h3>
+        <div class="chiprow" id="chipRow"></div>
+        <form class="addform" id="shortcutForm" style="display:none">
+          <input id="scName" placeholder="Tên lối tắt"/>
+          <input id="scUrl" placeholder="Dán link https://…"/>
+          <button class="primary" type="submit">Thêm</button>
+        </form>
+        <button type="button" class="small" id="scToggle" style="margin-top:8px">＋ Thêm lối tắt</button>
+      </section>
+      <section class="spanel" id="spQc">
+        <h3>SỔ TAY QC</h3>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <span class="verpill" id="qcVer">v1.0 · 25/11</span>
+          <span style="flex:1"></span>
+          <a href="https://drive.google.com/drive/folders/1x1ZsKroXJ9jou0I4wd8zuayExS8NjrkD" target="_blank" rel="noopener"><button type="button" class="small">Mở sổ tay</button></a>
+          <button type="button" class="small primary" id="qcIssue">Ban hành</button>
+        </div>
+      </section>
+    </div>
+    <!-- CỘT PHẢI -->
+    <div class="setcol">
+      <section class="spanel" id="spKeys">
+        <h3>CẤP KHÓA KẾT NỐI</h3>
+        <div id="keyList"></div>
+        <form class="checkrow" id="checkForm">
+          <input id="checkInput" placeholder="Dán khóa vào để kiểm tra còn hiệu lực không…"/>
+          <button type="submit">Kiểm tra</button>
+        </form>
+        <div class="checkres" id="checkRes"></div>
+      </section>
+      <section class="spanel" id="spRules">
+        <h3 style="display:flex;align-items:center;gap:8px">LUẬT PHÒNG <span class="sub" style="font-size:12px;font-weight:600;letter-spacing:0;text-transform:none">· ✕ xóa tại dòng</span>
+          <button type="button" class="small" id="rulesToggle" style="margin-left:auto">⌄ Mở</button>
+        </h3>
+        <div class="sub" id="rulesSummary" style="font-size:13px">5 luật · 3 cấm · v1.0</div>
+        <div id="rulesBody" style="display:none">
+          <div id="lawList"></div>
+          <form class="addform" id="lawForm" style="display:none">
+            <input id="lawInput" placeholder="Nội dung luật mới…"/>
+            <button class="primary" type="submit">Thêm</button>
+          </form>
+          <button type="button" class="small" id="lawToggle" style="margin-top:8px">＋ Thêm luật</button>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -351,11 +423,12 @@ var FOLDERS=[
 var PCOLORS={"Chủ sở hữu":"#e0a100","Lead":"#2f6fd0","Hương":"#9b4dca","Đạt":"#e07b00","Bảo":"#0e9f7a"};
 var state={
  seq:0,
- keys:{},
  members:[
   {name:"Hương",room:"create",role:"Trưởng phòng",email:"kennyhaidang05@gmail.com",status:"connected",note:"Đã kết nối · Đội phòng: Ngọc · Mai · Ly"},
   {name:"Đạt",room:"trend",role:"Trưởng phòng",email:"",status:"sleeping",note:"Đang ngủ · chưa kết nối"},
-  {name:"Bảo",room:"strat",role:"Trưởng phòng",email:"",status:"sleeping",note:"Đang ngủ · chưa kết nối"}
+  {name:"Bảo",room:"strat",role:"Trưởng phòng",email:"",status:"sleeping",note:"Đang ngủ · chưa kết nối"},
+  {name:"Mai",room:"create",role:"Chuyên viên",email:"",status:"sleeping",note:"Đã khai báo — chờ kết nối"},
+  {name:"Ly",room:"create",role:"QC phòng",email:"",status:"sleeping",note:"Đã khai báo — chờ kết nối"}
  ],
  jobs:[
   {id:"TEST-01",title:"Đề xuất 3 ý tưởng format cho kênh YouTube hài tổng hợp",room:"create",owner:"Hương",due:"",status:"Đang QC"}
@@ -435,7 +508,7 @@ function renderPanel(){
  +'<div class="statbox"><b><span class="ok">'+pass+' ĐẠT</span> · <span class="no">'+fail+' LOẠI</span></b><span>Kết luận QC</span></div>';
  var due=state.jobs.filter(function(j){return j.due&&j.status!=="Đã bàn giao"});
  var board='<div class="boardline"><span class="ic">⏰</span><div><b>Danh sách nhắc hẹn</b>'+(due.length?due.map(function(j){return '<div class="sub" style="font-size:13px">'+j.id+' · '+esc(j.title)+' — hạn '+esc(j.due)+'</div>'}).join(""):'<div class="sub" style="font-size:13px">Chưa có việc nào có hạn.</div>')+'</div></div>'
- +'<div class="boardline"><span class="ic">📝</span><div><b>Ghi chú, ghim</b><div class="sub" style="font-size:13px">Phòng chat duy nhất của công ty — việc &amp; kết luận QC ghi vào Sổ chung mới tính.</div></div></div>';
+ +'<div class="boardline"><span class="ic">📝</span><div><b>Ghi chú, ghim</b><div class="sub" style="font-size:13px">Việc &amp; QC ghi vào Sổ chung mới tính.</div></div></div>';
  $("panelBoard").innerHTML=board;
  $("panelFiles").innerHTML=FOLDERS.map(function(f){
   return '<a class="filelink" href="'+f.url+'" target="_blank" rel="noopener"><span class="fic">'+f.icon+'</span><span><b>'+esc(f.name)+'</b><small>'+esc(f.desc)+'</small></span></a>'}).join("");
@@ -445,54 +518,7 @@ function renderPanel(){
  var opts=state.jobs.map(function(j){return '<option value="'+j.id+'">'+j.id+" — "+esc(j.title)+"</option>"}).join("");
  $("chatJob").innerHTML='<option value="">Không gắn việc</option>'+opts;
 }
-/* ===== render: cài đặt ===== */
-function renderSettings(){
- if(!state.members.length){$("memberList").innerHTML='<div class="empty">Chưa có Muse nào được thêm.</div>'}
- else{$("memberList").innerHTML=state.members.map(function(m,i){
-  return '<div class="connrow"><span class="avatar" style="background:'+memberRoomColor(m)+';width:34px;height:34px;flex-basis:34px;font-size:12px">'+initials(m.name)+'</span><div class="cinfo"><b>'+esc(m.name)+'</b> <span class="tag">'+esc(memberRoomLabel(m))+'</span> <span class="tag">'+esc(m.role)+'</span><div class="sub" style="font-size:12.5px">'+(m.email?esc(m.email)+" · ":"")+esc(m.note)+'</div></div><button type="button" class="small danger" data-delmember="'+i+'">Xóa</button></div>'}).join("")}
- renderKeys();
-}
-/* ===== cấp khóa tự cấp ===== */
-function keyRec(name){if(!state.keys[name])state.keys[name]={status:"none",full:"",issued:""};return state.keys[name]}
-function genKey(){
- var bytes=new Uint8Array(12),i,hex="";
- if(window.crypto&&crypto.getRandomValues){crypto.getRandomValues(bytes)}else{for(i=0;i<12;i++)bytes[i]=Math.floor(Math.random()*256)}
- for(i=0;i<12;i++){hex+=("0"+bytes[i].toString(16)).slice(-2)}
- return "MK-"+hex.substring(0,8)+"-"+hex.substring(8,16)+"-"+hex.substring(16,24);
-}
-function connectMsg(name,key){
- return "Kết nối vào Phòng chat — Công ty Nội dung YouTube.\nKhóa kết nối của bạn: "+key+"\nHãy dùng khóa này cắm đầu nối về nền tảng của phòng, vào phòng chat và điểm danh 1 câu xác nhận. Việc chỉ nhận khi được giao trong phòng chat, báo cáo gắn mã việc.";
-}
-function copyText(txt,okMsg){
- function fallback(){var ta=document.createElement("textarea");ta.value=txt;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();var ok=false;try{ok=document.execCommand("copy")}catch(e){}document.body.removeChild(ta);if(ok){toast(okMsg,true)}else{toast("Không sao chép tự động được — hãy bôi đen khóa và copy tay.")}}
- if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){toast(okMsg,true)},fallback)}else{fallback()}
-}
-function keyPeople(){
- var list=[{name:"Lead",sub:"Giám đốc · Chủ phòng",color:"#2f6fd0"}];
- state.members.forEach(function(m){list.push({name:m.name,sub:memberRoomLabel(m)+" · "+m.role,color:memberRoomColor(m)})});
- return list;
-}
-function renderKeys(){
- var box=$("keyList");if(!box)return;
- box.innerHTML=keyPeople().map(function(p){
-  var k=keyRec(p.name);
-  var badge=k.status==="active"?'<span class="tag" style="color:#1fae62;border-color:#1fae62">Đã cấp khóa</span>':k.status==="revoked"?'<span class="tag" style="color:#e05252;border-color:#e05252">Đã thu hồi</span>':'<span class="tag">Chưa cấp khóa</span>';
-  var body="";
-  if(k.status==="active"){
-   body='<div class="keybox"><code>'+esc(k.full)+'</code></div>'
-   +'<div class="sub" style="font-size:12px;margin-top:4px">Cấp lúc '+esc(k.issued)+'</div>'
-   +'<div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px">'
-   +'<button type="button" class="small primary" data-keymsg="'+esc(p.name)+'">Sao chép tin nhắn kết nối</button>'
-   +'<button type="button" class="small" data-keycopy="'+esc(p.name)+'">Sao chép khóa</button>'
-   +'<button type="button" class="small" data-keyissue="'+esc(p.name)+'">Cấp lại</button>'
-   +'<button type="button" class="small danger" data-keyrevoke="'+esc(p.name)+'">Thu hồi</button></div>';
-  }else{
-   body='<div style="margin-top:8px"><button type="button" class="small primary" data-keyissue="'+esc(p.name)+'">'+(k.status==="revoked"?"Cấp khóa mới":"Cấp khóa")+'</button></div>';
-  }
-  return '<div class="connrow"><span class="avatar" style="background:'+p.color+';width:36px;height:36px;flex-basis:36px;font-size:13px">'+initials(p.name)+'</span><div class="cinfo"><b>'+esc(p.name)+'</b> '+badge+'<div class="sub" style="font-size:12.5px">'+esc(p.sub)+'</div>'+body+'</div></div>';
- }).join("");
-}
-function renderAll(){renderIdentity();renderMsgs();renderPanel();renderSettings()}
+function renderAll(){renderIdentity();renderMsgs();renderPanel()}
 
 /* ===== gửi tin & giao việc ===== */
 $("chatForm").addEventListener("submit",function(e){e.preventDefault();
@@ -518,21 +544,13 @@ document.querySelectorAll(".ptab").forEach(function(b){b.addEventListener("click
  document.querySelectorAll(".ptab").forEach(function(x){x.classList.toggle("active",x===b)});
  document.querySelectorAll(".ptabpane").forEach(function(p){p.classList.toggle("active",p.id==="pane-"+b.dataset.ptab)});
 })});
-/* ===== panel & cài đặt: điều hướng ===== */
+/* ===== panel: điều hướng ===== */
 function closePanel(){$("infoPanel").classList.remove("open");$("backdrop").classList.remove("open")}
 $("panelToggle").addEventListener("click",function(){
  if(window.innerWidth<=900){$("infoPanel").classList.toggle("open");$("backdrop").classList.toggle("open",$("infoPanel").classList.contains("open"))}
  else{$("infoPanel").scrollTop=0;$("infoPanel").focus&&$("infoPanel").focus()}
 });
 $("backdrop").addEventListener("click",closePanel);
-$("settingsToggle").addEventListener("click",function(){
- var s=$("v-settings");var opening=!s.classList.contains("active");
- s.classList.toggle("active",opening);$("v-room").classList.toggle("hidden",opening);
- $("settingsToggle").textContent=opening?"Phòng chat":"Cài đặt";closePanel();
-});
-$("backToRoom").addEventListener("click",function(){
- $("v-settings").classList.remove("active");$("v-room").classList.remove("hidden");$("settingsToggle").textContent="Cài đặt";
-});
 $("identitySel").addEventListener("change",function(){renderMsgs()});
 /* ===== chi tiết việc + QC ===== */
 function openJob(id){
@@ -562,16 +580,6 @@ document.addEventListener("click",function(e){
  if(dv&&state.openJobId){var j2=state.jobs.find(function(x){return x.id===state.openJobId});
   if(!hasPass(j2)){toast("⛔ Không bàn giao được: việc "+j2.id+" chưa có kết luận QC ĐẠT. Hãy chấm ĐẠT (kèm bằng chứng) ngay bên dưới rồi bàn giao.");return}
   j2.status="Đã bàn giao";renderAll();openJob(j2.id);toast("Đã bàn giao việc "+j2.id+" lên Lead ✓",true);return}
- var del=e.target.closest("[data-delmember]");
- if(del){var m=state.members.splice(Number(del.dataset.delmember),1)[0];if(m)delete state.keys[m.name];renderAll();toast("Đã xóa thành viên "+(m?m.name:""),true);return}
- var ki=e.target.closest("[data-keyissue]");
- if(ki){var nm=ki.dataset.keyissue;var rec=keyRec(nm);var was=rec.status;rec.status="active";rec.full=genKey();rec.issued=now();renderSettings();toast((was==="active"?"Đã cấp lại khóa mới cho ":"Đã cấp khóa cho ")+nm+" — sao chép tin nhắn kết nối và dán vào Muse đó",true);return}
- var kr=e.target.closest("[data-keyrevoke]");
- if(kr){var rec2=keyRec(kr.dataset.keyrevoke);rec2.status="revoked";rec2.full="";renderSettings();toast("Đã thu hồi khóa của "+kr.dataset.keyrevoke,true);return}
- var kc=e.target.closest("[data-keycopy]");
- if(kc){copyText(keyRec(kc.dataset.keycopy).full,"Đã sao chép khóa của "+kc.dataset.keycopy);return}
- var km=e.target.closest("[data-keymsg]");
- if(km){copyText(connectMsg(km.dataset.keymsg,keyRec(km.dataset.keymsg).full),"Đã sao chép tin nhắn kết nối — dán vào chat của "+km.dataset.keymsg);return}
 });
 $("jmQcForm").addEventListener("submit",function(e){e.preventDefault();$("jmQcErr").textContent="";
  if(!state.openJobId)return;
@@ -580,30 +588,174 @@ $("jmQcForm").addEventListener("submit",function(e){e.preventDefault();$("jmQcEr
  state.qc.unshift({jobId:state.openJobId,gate:$("jmGate").value,result:res,evidence:ev,by:identity(),time:now()});
  $("jmEvidence").value="";renderAll();openJob(state.openJobId);toast("Đã ghi kết luận QC: "+state.openJobId+" — "+res,true);
 });
-/* ===== thêm Muse (cài đặt) ===== */
-$("memberForm").addEventListener("submit",function(e){e.preventDefault();
- var name=$("mName").value.trim(),email=$("mEmail").value.trim();if(!name||!email)return;
- state.members.push({name:name,room:$("mRoom").value,role:$("mRole").value,email:email,status:"declared",note:"Đã khai báo — chờ kết nối"});
- $("mName").value="";$("mEmail").value="";
- renderAll();toast("Đã thêm Muse “"+name+"” — trạng thái: Đã khai báo, chờ kết nối",true);
-});
-/* ===== giao diện: sáng/tối + cỡ chữ ===== */
-function segWire(id,attr,fn){
- var seg=$(id);if(!seg)return;
- seg.querySelectorAll("button").forEach(function(b){b.addEventListener("click",function(){
-  seg.querySelectorAll("button").forEach(function(x){x.classList.toggle("active",x===b)});
-  fn(b.dataset[attr]);
- })});
+/* ===== CÀI ĐẶT GỌN — khóa tự cấp · thêm/xóa đối xứng (chỉ giữ trong lúc trang mở) ===== */
+function genKey(){var c="0123456789abcdef",h="";for(var i=0;i<20;i++)h+=c[Math.floor(Math.random()*16)];return "mk-"+h}
+var PEOPLE=[
+ {name:"Lead",role:"Giám đốc",room:"lead",roomLabel:"Phòng Chat tổng",email:"",key:genKey(),conn:true,added:false},
+ {name:"Hương",role:"QL Sáng tạo",room:"create",roomLabel:"Phòng Sáng tạo",email:"kennyhaidang05@gmail.com",key:genKey(),conn:false,added:false},
+ {name:"Đạt",role:"QL Trending",room:"trend",roomLabel:"Phòng Trending",email:"",key:null,conn:false,added:false},
+ {name:"Bảo",role:"QL Chiến lược",room:"strat",roomLabel:"Phòng Chiến lược",email:"",key:genKey(),conn:false,added:false},
+ {name:"Mai",role:"Chuyên viên",room:"create",roomLabel:"Phòng Sáng tạo",email:"",key:genKey(),conn:false,added:true},
+ {name:"Ly",role:"QC phòng",room:"create",roomLabel:"Phòng Sáng tạo",email:"",key:null,conn:false,added:true}
+];
+var DEADKEYS=[];
+var pending=null;
+var SHORTCUTS=FOLDERS.map(function(f){return f.name==="File SỔ CHUNG"?{name:"Sổ chung",icon:"📒",url:f.url}:{name:f.name,icon:f.icon,url:f.url}});
+var LAWS=[
+ {t:"Đọc Sổ chung trước: đọc tab VIEC + tab CHAT để nắm việc đang mở và tin mới nhất.",ban:false},
+ {t:"Nhận việc trong phòng chat: việc được giao có mã (VC-xxxx), ghi rõ ai giữ và hạn nào — nhận đúng việc của phòng mình.",ban:false},
+ {t:"Báo cáo tiến độ ngay trong phòng chat bằng tin loại Báo cáo, bắt buộc gắn mã việc.",ban:false},
+ {t:"QC chấm ĐẠT / LOẠI kèm bằng chứng — chấm ngay trong chi tiết việc ở panel Thông tin nhóm.",ban:false},
+ {t:"Bàn giao lên Lead: kết quả ghi vào Sổ chung + Drive; bài học đúc kết chuyển cho phòng Chiến lược.",ban:false},
+ {t:"Chưa QC ĐẠT — không bàn giao",ban:true},
+ {t:"Không ghi Sổ chung = chưa làm",ban:true},
+ {t:"Báo cáo phải gắn mã việc",ban:true}
+];
+var editingLaw=-1;
+function pStatus(p){return p.conn?["Đã kết nối","on"]:p.key?["Đã cấp","mid"]:["Chưa cấp khóa","off"]}
+function copyText(txt,msg){
+ function done(){toast(msg,true)}
+ function fallback(){var ta=document.createElement("textarea");ta.value=txt;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();try{document.execCommand("copy");done()}catch(e){toast("Không chép tự động được — khóa: "+txt)}document.body.removeChild(ta)}
+ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,fallback)}else{fallback()}
 }
-segWire("themeSeg","theme",function(v){
- document.body.classList.toggle("light",v==="light");
- document.documentElement.style.colorScheme=v;
+function renderKeys(){
+ $("setPill").textContent="Phòng Chat tổng · "+PEOPLE.length+" Muse";
+ $("keyList").innerHTML=PEOPLE.map(function(p,i){
+  var st=pStatus(p);
+  var keyHtml=p.key?'<span class="keymask">••••'+p.key.slice(-4)+'</span><button type="button" class="copyic" data-kcopy="'+i+'" title="Chép khóa của '+esc(p.name)+'" aria-label="Chép khóa của '+esc(p.name)+'">⧉</button>':"";
+  var acts="";
+  if(p.key){
+   acts+='<button type="button" class="small" data-kre="'+i+'">Cấp lại</button>';
+   acts+='<button type="button" class="small" data-kmsg="'+i+'">✉ Chép tin nhắn</button>';
+   var rv=pending&&pending.act==="revoke"&&pending.id===i;
+   acts+='<button type="button" class="small danger'+(rv?" confirming":"")+'" data-krevoke="'+i+'">'+(rv?"Thu hồi?":"Thu hồi")+'</button>';
+  }else{
+   acts+='<button type="button" class="small primary" data-kgrant="'+i+'">Cấp khóa</button>';
+  }
+  if(p.name!=="Lead"){
+   var dl=pending&&pending.act==="del"&&pending.id===i;
+   acts+='<button type="button" class="small danger'+(dl?" confirming":"")+'" data-kdel="'+i+'" title="Xóa Muse khỏi danh sách">'+(dl?"Xóa?":"✕ Xóa")+'</button>';
+  }
+  return '<div class="krow"><span class="dot '+(p.conn||p.key?"on":"")+'"></span><div class="kname"><b>'+esc(p.name)+' — '+esc(p.role)+'</b><span>'+esc(p.roomLabel)+'</span></div><span class="sttag2 '+st[1]+'">'+st[0]+'</span><div class="kkey">'+keyHtml+'</div><div class="kacts">'+acts+'</div></div>';
+ }).join("");
+}
+function renderAdded(){
+ var added=PEOPLE.map(function(p,i){return{p:p,i:i}}).filter(function(x){return x.p.added});
+ var h='<div class="sub" style="font-size:12px;font-weight:800;letter-spacing:.05em">ĐÃ THÊM ('+added.length+') — BẤM ✕ ĐỂ XÓA NGAY TẠI ĐÂY</div>';
+ if(!added.length)h+='<div class="sub" style="font-size:13px;margin-top:4px">Chưa thêm Muse nào qua form này.</div>';
+ h+=added.map(function(x){var p=x.p;var st=p.conn?["Đã kết nối","on"]:p.key?["Đã cấp — chờ kết nối","mid"]:["Đã khai báo — chờ kết nối","off"];
+  var dl=pending&&pending.act==="del"&&pending.id===x.i;
+  return '<div class="arow"><div class="ainfo"><b>'+esc(p.name)+'</b><span>'+esc(p.roomLabel.replace("Phòng ",""))+' · '+esc(p.role)+(p.email?' · '+esc(p.email):"")+'</span></div><span class="sttag2 '+st[1]+'">'+st[0]+'</span><button type="button" class="'+(dl?"confirming":"")+'" data-kdel="'+x.i+'" title="Xóa Muse khỏi danh sách">'+(dl?"Xóa?":"✕")+'</button></div>'}).join("");
+ $("addedBox").innerHTML=h;
+}
+function renderShortcuts(){
+ $("chipRow").innerHTML=SHORTCUTS.map(function(s,i){return '<a class="chip" href="'+s.url+'" target="_blank" rel="noopener">'+s.icon+' '+esc(s.name)+'<button type="button" class="cx" data-scdel="'+i+'" title="Gỡ lối tắt" aria-label="Gỡ lối tắt '+esc(s.name)+'">✕</button></a>'}).join("");
+}
+function renderLaws(){
+ var nl=LAWS.filter(function(l){return !l.ban}).length,nb=LAWS.length-nl;
+ $("rulesSummary").textContent=nl+" luật · "+nb+" cấm · v1.0";
+ $("lawList").innerHTML=LAWS.map(function(l,i){
+  var dl=pending&&pending.act==="lawdel"&&pending.id===i;
+  var body;
+  if(editingLaw===i){body='<input id="lawEdit" value="'+esc(l.t)+'" aria-label="Sửa luật"/>'}
+  else{
+   var t=esc(l.t),ci=t.indexOf(":");
+   var shown=l.ban?'<span style="color:#ff8a8a">⛔ <b>'+t+'</b></span>':(ci>0?"<b>"+t.slice(0,ci+1)+"</b>"+t.slice(ci+1):t);
+   body='<span class="lx" data-lawedit="'+i+'" title="Bấm để sửa tại chỗ (Giám đốc / Chủ)">'+shown+'</span>';
+  }
+  return '<div class="lawrow">'+body+'<button type="button" class="'+(dl?"confirming":"")+'" data-lawdel="'+i+'" title="Xóa luật này">'+(dl?"Xóa luật này?":"✕")+'</button></div>';
+ }).join("");
+ var le=$("lawEdit");if(le){le.focus();try{le.setSelectionRange(le.value.length,le.value.length)}catch(e){}}
+}
+function renderSettings(){renderKeys();renderAdded();renderShortcuts();renderLaws()}
+function deletePerson(i){
+ var p=PEOPLE[i];if(!p||p.name==="Lead")return;
+ if(p.key)DEADKEYS.push(p.key);
+ PEOPLE.splice(i,1);
+ var mi=state.members.findIndex(function(m){return m.name===p.name});
+ if(mi>=0)state.members.splice(mi,1);
+ pending=null;renderAll();renderSettings();
+ toast("Đã xóa "+p.name+" khỏi danh sách — khóa (nếu có) đã thu hồi theo.",true);
+}
+$("setToggle").addEventListener("click",function(){$("setWrap").classList.add("open");renderSettings()});
+$("setClose").addEventListener("click",function(){$("setWrap").classList.remove("open")});
+document.addEventListener("click",function(e){
+ var c=e.target.closest("[data-kcopy]");if(c){var p=PEOPLE[+c.dataset.kcopy];if(p&&p.key)copyText(p.key,"Đã chép khóa của "+p.name);return}
+ var g=e.target.closest("[data-kgrant]");if(g){var p2=PEOPLE[+g.dataset.kgrant];p2.key=genKey();pending=null;renderSettings();toast("Đã cấp khóa cho "+p2.name+" — chép bằng ⧉ cạnh khóa",true);return}
+ var re=e.target.closest("[data-kre]");if(re){var p3=PEOPLE[+re.dataset.kre];if(p3.key)DEADKEYS.push(p3.key);p3.key=genKey();pending=null;renderSettings();toast("Đã cấp lại khóa cho "+p3.name+" — khóa cũ hết hiệu lực",true);return}
+ var ms=e.target.closest("[data-kmsg]");if(ms){var p4=PEOPLE[+ms.dataset.kmsg];copyText("Kết nối về Phòng chat — Công ty Nội dung YouTube. Khóa kết nối của "+p4.name+": "+p4.key+" — dán khóa này vào Muse của bạn để điểm danh vào phòng.","Đã chép tin nhắn kết nối của "+p4.name);return}
+ var rv=e.target.closest("[data-krevoke]");if(rv){var i=+rv.dataset.krevoke;
+  if(pending&&pending.act==="revoke"&&pending.id===i){var p5=PEOPLE[i];DEADKEYS.push(p5.key);p5.key=null;p5.conn=false;pending=null;renderSettings();toast("Đã thu hồi khóa của "+p5.name+" — khóa cũ hết hiệu lực",true)}
+  else{pending={act:"revoke",id:i};renderSettings()}return}
+ var dl=e.target.closest("[data-kdel]");if(dl){var j=+dl.dataset.kdel;
+  if(pending&&pending.act==="del"&&pending.id===j){deletePerson(j)}
+  else{pending={act:"del",id:j};renderSettings()}return}
+ var sc=e.target.closest("[data-scdel]");if(sc){e.preventDefault();SHORTCUTS.splice(+sc.dataset.scdel,1);renderShortcuts();toast("Đã gỡ lối tắt",true);return}
+ var ld=e.target.closest("[data-lawdel]");if(ld){var k=+ld.dataset.lawdel;
+  if(pending&&pending.act==="lawdel"&&pending.id===k){LAWS.splice(k,1);pending=null;renderLaws();toast("Đã xóa luật",true)}
+  else{pending={act:"lawdel",id:k};renderLaws()}return}
+ var lw=e.target.closest("[data-lawedit]");if(lw){if(identity()==="Lead"||identity()==="Chủ sở hữu"){editingLaw=+lw.dataset.lawedit;renderLaws()}return}
 });
-segWire("fontSeg","font",function(v){
- document.body.classList.remove("fs-s","fs-l");
- if(v!=="m")document.body.classList.add("fs-"+v);
+document.addEventListener("change",function(e){
+ if(e.target.id==="lawEdit"&&editingLaw>=0){LAWS[editingLaw].t=e.target.value;editingLaw=-1;renderLaws();toast("Đã sửa luật tại chỗ",true)}
 });
-renderAll();
+$("addForm").addEventListener("submit",function(e){e.preventDefault();
+ var name=$("addName").value.trim(),email=$("addEmail").value.trim();if(!name||!email)return;
+ if(PEOPLE.some(function(p){return p.name===name})){toast("Tên “"+name+"” đã có trong danh sách");return}
+ var room=$("addRoom").value,role=$("addRole").value;
+ var roomLabel=room==="lead"?"Phòng Chat tổng":ROOMS[room].name;
+ PEOPLE.push({name:name,role:role,room:room,roomLabel:roomLabel,email:email,key:null,conn:false,added:true});
+ state.members.push({name:name,room:room,role:role,email:email,status:"sleeping",note:"Đã khai báo — chờ kết nối"});
+ $("addName").value="";$("addEmail").value="";
+ pending=null;renderAll();renderSettings();
+ toast("Đã thêm "+name+" — đã hiện ở Cấp khóa + tab Thành viên, chờ cấp khóa",true);
+});
+$("checkForm").addEventListener("submit",function(e){e.preventDefault();
+ var v=$("checkInput").value.trim(),r=$("checkRes");
+ if(!v){r.textContent="";return}
+ var p=PEOPLE.find(function(x){return x.key&&x.key===v});
+ if(p){r.innerHTML='<span class="ok">✓ Khóa còn hiệu lực — của '+esc(p.name)+'</span>'}
+ else if(DEADKEYS.indexOf(v)>=0){r.innerHTML='<span class="no">⛔ Khóa đã hết hiệu lực (đã thu hồi / cấp lại / Muse đã bị xóa).</span>'}
+ else{r.innerHTML='<span class="no">⛔ Không nhận ra khóa này.</span>'}
+});
+document.querySelectorAll("[data-theme-set]").forEach(function(b){b.addEventListener("click",function(){
+ if(b.dataset.themeSet==="light")document.documentElement.setAttribute("data-theme","light");
+ else document.documentElement.removeAttribute("data-theme");
+ document.querySelectorAll("[data-theme-set]").forEach(function(x){x.classList.toggle("active",x===b)});
+})});
+document.querySelectorAll("[data-font-set]").forEach(function(b){b.addEventListener("click",function(){
+ if(b.dataset.fontSet==="m")document.documentElement.removeAttribute("data-font");
+ else document.documentElement.setAttribute("data-font",b.dataset.fontSet);
+ document.querySelectorAll("[data-font-set]").forEach(function(x){x.classList.toggle("active",x===b)});
+})});
+$("scToggle").addEventListener("click",function(){var f=$("shortcutForm");f.style.display="flex";this.style.display="none";$("scName").focus()});
+$("shortcutForm").addEventListener("submit",function(e){e.preventDefault();
+ var n=$("scName").value.trim(),u=$("scUrl").value.trim();if(!n||!u)return;
+ SHORTCUTS.push({name:n,icon:"🔗",url:u});
+ $("scName").value="";$("scUrl").value="";$("shortcutForm").style.display="none";$("scToggle").style.display="";
+ renderShortcuts();toast("Đã thêm lối tắt "+n,true);
+});
+$("rulesToggle").addEventListener("click",function(){
+ var b=$("rulesBody"),open=b.style.display!=="none";
+ b.style.display=open?"none":"block";
+ $("rulesSummary").style.display=open?"":"none";
+ this.textContent=open?"⌄ Mở":"⌃ Thu gọn";
+});
+$("lawToggle").addEventListener("click",function(){var f=$("lawForm");f.style.display="flex";this.style.display="none";$("lawInput").focus()});
+$("lawForm").addEventListener("submit",function(e){e.preventDefault();
+ var v=$("lawInput").value.trim();if(!v)return;
+ LAWS.push({t:v,ban:false});
+ $("lawInput").value="";$("lawForm").style.display="none";$("lawToggle").style.display="";
+ renderLaws();toast("Đã thêm luật",true);
+});
+var qcVer=1.0;
+$("qcIssue").addEventListener("click",function(){
+ qcVer=Math.round((qcVer+0.1)*10)/10;
+ $("qcVer").textContent="v"+qcVer.toFixed(1)+" · "+new Date().toLocaleDateString("vi-VN");
+ state.messages.push({from:"Lead",text:"📗 Ban hành Sổ tay QC v"+qcVer.toFixed(1)+" — chuẩn mới áp dụng cho tất cả các phòng, các phòng đọc và thực hiện theo.",job:"",kind:"chat",time:now()});
+ renderAll();toast("Đã ban hành Sổ tay QC v"+qcVer.toFixed(1)+" cho các phòng",true);
+});
+renderAll();renderSettings();
 </script>
 </body>
 </html>
